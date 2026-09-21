@@ -1,0 +1,7356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Água na Conta | Cada gota conta. Cada atitude transforma.</title>
+
+    <meta
+        name="description"
+        content="Água na Conta — plataforma educativa para acompanhar consumo, economia de água e impacto ambiental."
+    >
+
+    <style>
+        :root {
+            --primary: #087f8c;
+            --primary-dark: #05616c;
+            --primary-light: #e5f7f8;
+
+            --secondary: #22a6b3;
+            --accent: #42c2b3;
+
+            --success: #16855b;
+            --success-light: #e8f8f0;
+
+            --warning: #c98216;
+            --warning-light: #fff5df;
+
+            --danger: #c94a4a;
+            --danger-light: #fff0f0;
+
+            --blue: #3578c5;
+            --blue-light: #edf5ff;
+
+            --text: #17323a;
+            --text-light: #61767d;
+
+            --background: #f4f9fa;
+            --surface: #ffffff;
+            --border: #dcebed;
+
+            --shadow-sm: 0 4px 15px rgba(16, 71, 79, 0.06);
+            --shadow: 0 12px 35px rgba(16, 71, 79, 0.10);
+            --shadow-lg: 0 20px 55px rgba(16, 71, 79, 0.14);
+
+            --radius-sm: 10px;
+            --radius: 16px;
+            --radius-lg: 24px;
+
+            --sidebar-width: 245px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* =========================================================
+           TELA INICIAL
+        ========================================================= */
+
+        .welcome-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(66,194,179,.18), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(34,166,179,.18), transparent 30%),
+                linear-gradient(135deg, #eefafb, #f8fcfc);
+        }
+
+        .welcome-container {
+            width: min(1100px, 100%);
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .welcome-content {
+            padding: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 22px;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-content h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.02;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-content h1 span {
+            color: var(--primary);
+        }
+
+        .welcome-content > p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 620px;
+            margin-bottom: 28px;
+        }
+
+        .ods-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: white;
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .welcome-card {
+            background: rgba(255,255,255,.88);
+            border: 1px solid rgba(255,255,255,.9);
+            box-shadow: var(--shadow-lg);
+            border-radius: 30px;
+            padding: 38px;
+            backdrop-filter: blur(10px);
+        }
+
+        .welcome-card h2 {
+            margin-bottom: 8px;
+            font-size: 27px;
+        }
+
+        .welcome-card p {
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: white;
+            color: var(--text);
+            outline: none;
+            transition: .2s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(8,127,140,.10);
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 12px;
+            padding: 13px 18px;
+            font-weight: 750;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 8px 20px rgba(8,127,140,.20);
+        }
+
+        .btn-secondary {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-danger {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        /* =========================================================
+           LAYOUT PRINCIPAL
+        ========================================================= */
+
+        .app {
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            background: white;
+            border-right: 1px solid var(--border);
+            padding: 22px 15px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px 24px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .sidebar-brand .brand-icon {
+            width: 39px;
+            height: 39px;
+            font-size: 20px;
+            border-radius: 12px;
+        }
+
+        .sidebar-brand strong {
+            font-size: 17px;
+        }
+
+        .sidebar-brand small {
+            display: block;
+            color: var(--text-light);
+            font-size: 11px;
+            margin-top: -3px;
+        }
+
+        .nav-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #91a3a8;
+            font-weight: 800;
+            padding: 10px 12px;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: var(--text-light);
+            padding: 11px 12px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            text-align: left;
+            font-weight: 650;
+            transition: .2s;
+        }
+
+        .nav-item:hover {
+            background: var(--background);
+            color: var(--primary-dark);
+        }
+
+        .nav-item.active {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .nav-icon {
+            width: 23px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            background: linear-gradient(145deg, #eefafb, #f7fcfc);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 14px;
+        }
+
+        .sidebar-bottom strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .sidebar-bottom p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .main {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+        }
+
+        .topbar {
+            height: 70px;
+            background: rgba(255,255,255,.92);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            backdrop-filter: blur(12px);
+        }
+
+        .mobile-menu {
+            display: none;
+            border: 0;
+            background: var(--primary-light);
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            color: var(--primary-dark);
+            font-size: 20px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .user-mini {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .user-mini-info strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .user-mini-info span {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        .content {
+            padding: 32px;
+            max-width: 1450px;
+            margin: auto;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn .25s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================================
+           TÍTULOS
+        ========================================================= */
+
+        .page-header {
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 29px;
+            letter-spacing: -.5px;
+            margin-bottom: 4px;
+        }
+
+        .page-header p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .welcome-title {
+            margin-bottom: 25px;
+        }
+
+        .welcome-title h1 {
+            font-size: 32px;
+            letter-spacing: -.8px;
+        }
+
+        .welcome-title p {
+            color: var(--text-light);
+        }
+
+        /* =========================================================
+           CARDS
+        ========================================================= */
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-header {
+            padding: 20px 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-header h2,
+        .card-header h3 {
+            font-size: 17px;
+        }
+
+        .card-header p {
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        .card-body {
+            padding: 22px;
+        }
+
+        /* =========================================================
+           DASHBOARD
+        ========================================================= */
+
+        .dashboard-hero {
+            background:
+                radial-gradient(circle at 90% 15%, rgba(255,255,255,.25), transparent 30%),
+                linear-gradient(135deg, #087f8c, #1ba5a7);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-hero::after {
+            content: "💧";
+            position: absolute;
+            right: 35px;
+            bottom: -35px;
+            font-size: 150px;
+            opacity: .10;
+        }
+
+        .dashboard-hero h1 {
+            font-size: 29px;
+            margin-bottom: 5px;
+        }
+
+        .dashboard-hero p {
+            opacity: .87;
+            max-width: 650px;
+            font-size: 14px;
+        }
+
+        .dashboard-hero-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .hero-status {
+            position: relative;
+            z-index: 2;
+            background: rgba(255,255,255,.14);
+            border: 1px solid rgba(255,255,255,.18);
+            padding: 12px 15px;
+            border-radius: 12px;
+            min-width: 180px;
+        }
+
+        .hero-status span {
+            display: block;
+            font-size: 12px;
+            opacity: .8;
+        }
+
+        .hero-status strong {
+            display: block;
+            font-size: 20px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .metric-card {
+            padding: 19px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 13px;
+        }
+
+        .metric-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .metric-icon.teal {
+            background: var(--primary-light);
+        }
+
+        .metric-icon.green {
+            background: var(--success-light);
+        }
+
+        .metric-icon.blue {
+            background: var(--blue-light);
+        }
+
+        .metric-icon.orange {
+            background: var(--warning-light);
+        }
+
+        .metric-label {
+            color: var(--text-light);
+            font-size: 12px;
+            font-weight: 650;
+        }
+
+        .metric-value {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+        }
+
+        .metric-description {
+            color: var(--text-light);
+            font-size: 12.5px;
+            margin-top: 2px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.35fr .65fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .dashboard-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* =========================================================
+           COMPARAÇÃO
+        ========================================================= */
+
+        .comparison-layout {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .form-section {
+            margin-bottom: 22px;
+        }
+
+        .form-section-title {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px;
+        }
+
+        .form-grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 13px;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        .result-empty {
+            min-height: 430px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .empty-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 5px;
+        }
+
+        .empty-state p {
+            color: var(--text-light);
+            font-size: 13px;
+            max-width: 330px;
+            margin: auto;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .result-box {
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            padding: 15px;
+            background: #fbfefe;
+        }
+
+        .result-box span {
+            color: var(--text-light);
+            font-size: 12px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .result-box strong {
+            font-size: 22px;
+            display: block;
+        }
+
+        .result-box small {
+            color: var(--text-light);
+            font-size: 11.5px;
+        }
+
+        .result-box.highlight {
+            background: var(--success-light);
+            border-color: #c7ebd9;
+        }
+
+        .result-box.highlight strong {
+            color: var(--success);
+        }
+
+        .result-box.warning {
+            background: var(--warning-light);
+            border-color: #f0ddb9;
+        }
+
+        .result-box.warning strong {
+            color: var(--warning);
+        }
+
+        .comparison-visual {
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 17px;
+            margin-bottom: 15px;
+        }
+
+        .comparison-visual h4 {
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .bar-row {
+            margin-bottom: 14px;
+        }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .bar-track {
+            height: 10px;
+            background: #edf3f4;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            border-radius: inherit;
+            transition: width .7s ease;
+        }
+
+        .bar.previous {
+            background: #9dbbc0;
+        }
+
+        .bar.current {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .level-card {
+            padding: 18px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #edfafa, #f9ffff);
+            border: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .level-card h4 {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 3px;
+        }
+
+        .level-card strong {
+            font-size: 21px;
+            color: var(--primary-dark);
+        }
+
+        .level-scale {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            margin-top: 14px;
+        }
+
+        .level-item {
+            height: 7px;
+            border-radius: 999px;
+            background: #dce9eb;
+        }
+
+        .level-item.active {
+            background: var(--primary);
+        }
+
+        .level-labels {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            font-size: 8px;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .interpretation {
+            padding: 16px;
+            border-left: 4px solid var(--primary);
+            background: var(--primary-light);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        /* =========================================================
+           CONSUMO
+        ========================================================= */
+
+        .consumption-layout {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 20px;
+        }
+
+        .consumption-result {
+            text-align: center;
+            padding: 28px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .big-number {
+            font-size: 42px;
+            font-weight: 850;
+            color: var(--primary-dark);
+            line-height: 1;
+        }
+
+        .big-number-label {
+            color: var(--text-light);
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        .profile-badge {
+            display: inline-flex;
+            margin-top: 14px;
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .consumption-breakdown {
+            padding: 20px;
+        }
+
+        .breakdown-item {
+            margin-bottom: 18px;
+        }
+
+        .breakdown-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .breakdown-value {
+            font-weight: 800;
+        }
+
+        .progress-track {
+            height: 9px;
+            border-radius: 999px;
+            background: #edf3f4;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .saving-box {
+            margin-top: 18px;
+            padding: 17px;
+            border-radius: 13px;
+            background: var(--success-light);
+            border: 1px solid #ccebdc;
+        }
+
+        .saving-box strong {
+            display: block;
+            color: var(--success);
+            font-size: 18px;
+        }
+
+        .saving-box span {
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           DESAFIO 7 DIAS
+        ========================================================= */
+
+        /* --- Resumo da jornada --- */
+
+        .jr-hero {
+            background: linear-gradient(135deg, #087f8c, #25a7a1);
+            color: white;
+            border-radius: 20px;
+            padding: 24px 28px;
+            margin-bottom: 18px;
+        }
+
+        .jr-hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .jr-hero h2 {
+            font-size: 26px;
+            line-height: 1.2;
+            letter-spacing: -.4px;
+        }
+
+        .jr-hero-sub {
+            font-size: 15px;
+            opacity: .92;
+            margin-top: 4px;
+        }
+
+        .jr-score {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .jr-score strong {
+            display: block;
+            font-size: 44px;
+            line-height: 1;
+            letter-spacing: -1.5px;
+        }
+
+        .jr-score span {
+            font-size: 13px;
+            opacity: .9;
+        }
+
+        .jr-level {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 18px 0 8px;
+            font-size: 14px;
+        }
+
+        .jr-level strong {
+            font-weight: 800;
+        }
+
+        .jr-level span {
+            opacity: .92;
+        }
+
+        .jr-level-bar {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.22);
+            overflow: hidden;
+        }
+
+        .jr-level-bar div {
+            height: 100%;
+            border-radius: inherit;
+            background: white;
+            transition: width .5s ease;
+        }
+
+        .jr-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 30px;
+            margin-top: 18px;
+        }
+
+        .jr-stat strong {
+            font-size: 22px;
+            line-height: 1.2;
+            margin-right: 6px;
+        }
+
+        .jr-stat span {
+            font-size: 14px;
+            opacity: .92;
+        }
+
+        /* --- Trilha dos 7 dias --- */
+
+        .jr-track-wrap {
+            overflow-x: auto;
+            margin-bottom: 18px;
+            padding-bottom: 4px;
+        }
+
+        .jr-track {
+            position: relative;
+            min-width: 640px;
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            align-items: start;
+            padding: 22px 0 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        .jr-line {
+            position: absolute;
+            top: 41px;
+            left: calc(100% / 14);
+            right: calc(100% / 14);
+            height: 6px;
+            border-radius: 999px;
+            background: var(--primary-light);
+        }
+
+        .jr-line div {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, var(--secondary), var(--success));
+            transition: width .6s ease;
+        }
+
+        .jr-day {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 0 6px 6px;
+            border: 0;
+            border-radius: 14px;
+            background: transparent;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .jr-node {
+            width: 44px;
+            height: 44px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            background: white;
+            font-size: 20px;
+            font-weight: 800;
+            transition: .2s;
+        }
+
+        .jr-day:hover .jr-node {
+            border-color: var(--accent);
+        }
+
+        .jr-day.partial .jr-node {
+            border-color: var(--accent);
+        }
+
+        .jr-day.done .jr-node {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .jr-day.active .jr-node {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 5px rgba(8,127,140,.16);
+        }
+
+        .jr-day.done.active .jr-node {
+            border-color: var(--success);
+            box-shadow: 0 0 0 5px rgba(22,133,91,.18);
+        }
+
+        .jr-day-label {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .jr-day.active .jr-day-label {
+            color: var(--primary-dark);
+        }
+
+        .jr-day-name {
+            font-size: 13px;
+            line-height: 1.25;
+            color: var(--text-light);
+        }
+
+        .jr-dots {
+            display: flex;
+            gap: 4px;
+            margin-top: 3px;
+        }
+
+        .jr-dots i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .jr-dots i.on {
+            background: var(--success);
+        }
+
+        .jr-next {
+            margin-top: 2px;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* --- Painel do dia --- */
+
+        .day-card {
+            scroll-margin-top: 90px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .day-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 22px 26px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, #f5fbfb, #ffffff);
+        }
+
+        .day-emoji {
+            width: 56px;
+            height: 56px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            background: var(--primary-light);
+            font-size: 30px;
+        }
+
+        .day-head h2 {
+            font-size: 24px;
+            line-height: 1.2;
+            letter-spacing: -.4px;
+        }
+
+        .day-head p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .day-score {
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .day-score strong {
+            font-size: 28px;
+            line-height: 1;
+            color: var(--primary-dark);
+        }
+
+        .day-score span {
+            display: block;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .day-body {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "missions fact"
+                "missions quiz"
+                "foot foot";
+            gap: 18px 22px;
+            padding: 22px 26px 26px;
+        }
+
+        .day-missions {
+            grid-area: missions;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .day-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 17px;
+        }
+
+        .day-section span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .day-fact {
+            grid-area: fact;
+            display: flex;
+            gap: 12px;
+            align-self: start;
+            padding: 16px 18px;
+            border: 1px solid #d6e6fa;
+            border-radius: 14px;
+            background: var(--blue-light);
+        }
+
+        .day-fact-icon {
+            font-size: 22px;
+            line-height: 1.3;
+        }
+
+        .day-fact strong {
+            color: var(--blue);
+            font-size: 15px;
+        }
+
+        .day-fact p {
+            margin-top: 4px;
+            font-size: 14.5px;
+            line-height: 1.55;
+        }
+
+        /* --- Missões --- */
+
+        .ms {
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: white;
+            transition: background .2s, border-color .2s;
+        }
+
+        .ms.done {
+            background: var(--success-light);
+            border-color: #c7e9d8;
+        }
+
+        .ms-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .ms-tag {
+            padding: 3px 11px;
+            border-radius: 999px;
+            font-size: 12.5px;
+            font-weight: 800;
+        }
+
+        .ms-tag.facil {
+            background: var(--success-light);
+            color: var(--success);
+        }
+
+        .ms-tag.medio {
+            background: var(--blue-light);
+            color: var(--blue);
+        }
+
+        .ms-tag.desafio {
+            background: var(--warning-light);
+            color: var(--warning);
+        }
+
+        .ms.done .ms-tag.facil {
+            background: white;
+        }
+
+        .ms-pts {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        .ms h3 {
+            font-size: 17px;
+            line-height: 1.3;
+        }
+
+        .ms p {
+            margin-top: 5px;
+            font-size: 14.5px;
+            color: var(--text-light);
+        }
+
+        .ms p.ms-tip {
+            margin-top: 8px;
+            font-size: 13.5px;
+        }
+
+        .ms-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .ms-chip {
+            display: inline-block;
+            padding: 5px 11px;
+            border: 0;
+            border-radius: 999px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        button.ms-chip:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .ms-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .ms-btn {
+            min-width: 158px;
+            padding: 10px 16px;
+            border: 1.5px solid var(--primary);
+            border-radius: 12px;
+            background: white;
+            color: var(--primary-dark);
+            font-size: 14px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .ms-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .ms-done {
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: var(--success);
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .ms-undo {
+            padding: 4px 2px;
+            border: 0;
+            background: none;
+            color: var(--text-light);
+            font-size: 13px;
+            text-decoration: underline;
+        }
+
+        .ms-undo:hover {
+            color: var(--text);
+        }
+
+        .ms-pop {
+            animation: msPop .4s ease;
+        }
+
+        @keyframes msPop {
+            0%   { transform: scale(.85); }
+            55%  { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- Quiz --- */
+
+        .day-quiz {
+            grid-area: quiz;
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: #fbfefe;
+        }
+
+        .qz-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .qz-head span {
+            color: var(--success);
+        }
+
+        .day-quiz h3 {
+            margin-bottom: 12px;
+            font-size: 16.5px;
+            line-height: 1.35;
+        }
+
+        .qz-options {
+            display: grid;
+            gap: 9px;
+        }
+
+        .qz-opt {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            background: white;
+            color: var(--text);
+            font-size: 14.5px;
+            line-height: 1.4;
+            text-align: left;
+            transition: .15s;
+        }
+
+        .qz-opt:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .qz-opt:disabled {
+            cursor: default;
+        }
+
+        .qz-letter {
+            width: 26px;
+            height: 26px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .qz-opt.correct {
+            border-color: var(--success);
+            background: var(--success-light);
+        }
+
+        .qz-opt.correct .qz-letter {
+            background: var(--success);
+            color: white;
+        }
+
+        .qz-opt.wrong {
+            border-color: var(--danger);
+            background: var(--danger-light);
+        }
+
+        .qz-opt.wrong .qz-letter {
+            background: var(--danger);
+            color: white;
+        }
+
+        .qz-result {
+            margin-top: 12px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .qz-result.ok {
+            background: var(--success-light);
+            color: #0e5c3f;
+        }
+
+        .qz-result.no {
+            background: var(--warning-light);
+            color: #7a4d08;
+        }
+
+        /* --- Rodapé do dia --- */
+
+        .day-foot {
+            grid-area: foot;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .day-bonus {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            background: var(--warning-light);
+            color: #7a4d08;
+            font-size: 14.5px;
+            font-weight: 600;
+        }
+
+        .day-bonus.earned {
+            background: var(--success-light);
+            color: #0e5c3f;
+            font-weight: 800;
+        }
+
+        .day-nav {
+            display: flex;
+            gap: 10px;
+            margin-left: auto;
+        }
+
+        .jr-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 18px;
+        }
+
+        .jr-foot p {
+            max-width: 780px;
+            font-size: 12.5px;
+            color: var(--text-light);
+        }
+
+        /* --- Celebração (gotas caindo) --- */
+
+        .drop-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .drop {
+            position: absolute;
+            top: -40px;
+            animation: dropFall linear forwards;
+        }
+
+        @keyframes dropFall {
+            to {
+                transform: translateY(115vh) rotate(300deg);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .day-body {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                grid-template-areas:
+                    "fact"
+                    "missions"
+                    "quiz"
+                    "foot";
+            }
+        }
+
+        @media (max-width: 650px) {
+            .jr-hero {
+                padding: 20px;
+            }
+
+            .jr-hero h2 {
+                font-size: 22px;
+            }
+
+            .jr-score strong {
+                font-size: 36px;
+            }
+
+            .jr-level {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .day-head {
+                flex-wrap: wrap;
+                padding: 18px;
+            }
+
+            .day-head h2 {
+                font-size: 21px;
+            }
+
+            .day-score {
+                width: 100%;
+                margin-left: 0;
+                text-align: left;
+            }
+
+            .day-body {
+                padding: 18px;
+            }
+
+            .ms-actions,
+            .day-nav {
+                width: 100%;
+            }
+
+            .ms-btn,
+            .ms-done,
+            .day-nav .btn {
+                flex: 1;
+            }
+
+            .jr-foot {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* =========================================================
+           ACESSIBILIDADE
+        ========================================================= */
+
+        :focus-visible {
+            outline: 3px solid rgba(8, 127, 140, .55);
+            outline-offset: 2px;
+        }
+
+        input:focus-visible,
+        select:focus-visible {
+            outline: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+
+        /* =========================================================
+           HISTÓRICO
+        ========================================================= */
+
+        .history-table-wrapper {
+            overflow-x: auto;
+        }
+
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        .history-table th {
+            text-align: left;
+            padding: 12px;
+            font-size: 11.5px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .history-table td {
+            padding: 13px 12px;
+            font-size: 12px;
+            border-bottom: 1px solid #edf3f4;
+        }
+
+        .history-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .level-tag {
+            display: inline-flex;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: var(--success-light);
+            color: var(--success);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .delete-history {
+            border: 0;
+            background: var(--danger-light);
+            color: var(--danger);
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+        }
+
+        .history-empty {
+            text-align: center;
+            padding: 45px 20px;
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           IMPACTO
+        ========================================================= */
+
+        .impact-hero {
+            background: linear-gradient(135deg, #065d69, #098a91);
+            color: white;
+            border-radius: 22px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+
+        .impact-hero h2 {
+            font-size: 27px;
+            margin-bottom: 5px;
+        }
+
+        .impact-hero p {
+            opacity: .84;
+            font-size: 13px;
+            max-width: 700px;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .impact-card {
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .impact-card .icon {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .impact-card strong {
+            display: block;
+            font-size: 28px;
+            color: var(--primary-dark);
+        }
+
+        .impact-card span {
+            display: block;
+            font-size: 12.5px;
+            color: var(--text-light);
+        }
+
+        .demonstrative {
+            margin-top: 15px;
+            padding: 11px 13px;
+            border-radius: 10px;
+            background: var(--warning-light);
+            color: #8b5e15;
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           SOBRE
+        ========================================================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .about-card {
+            padding: 25px;
+        }
+
+        .about-card h2 {
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .about-card p {
+            color: var(--text-light);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .ods-card {
+            background: linear-gradient(135deg, #e8f8f8, #f7ffff);
+            border-color: #cbe7e9;
+        }
+
+        .ods-number {
+            width: 64px;
+            height: 64px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #1683a0;
+            color: white;
+            font-size: 26px;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            gap: 9px;
+        }
+
+        .feature-list li {
+            display: flex;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .feature-list li span {
+            color: var(--success);
+            font-weight: 900;
+        }
+
+        /* =========================================================
+           META
+        ========================================================= */
+
+        .goal-card {
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff, #f3fbfb);
+        }
+
+        .goal-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .goal-top strong {
+            font-size: 14px;
+        }
+
+        .goal-top span {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .goal-bar {
+            height: 11px;
+            border-radius: 999px;
+            background: #e9f0f1;
+            overflow: hidden;
+        }
+
+        .goal-bar div {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: inherit;
+        }
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast-container {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .toast {
+            min-width: 280px;
+            max-width: 380px;
+            padding: 14px 16px;
+            border-radius: 13px;
+            background: #17323a;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            font-size: 12px;
+            animation: toastIn .25s ease;
+        }
+
+        .toast.success {
+            background: var(--success);
+        }
+
+        .toast.warning {
+            background: var(--warning);
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================================================
+           RESPONSIVO
+        ========================================================= */
+
+        @media (max-width: 1100px) {
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .comparison-layout,
+            .consumption-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: .25s;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .content {
+                padding: 22px 17px;
+            }
+
+            .dashboard-grid,
+            .dashboard-grid-2,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-container {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-content {
+                text-align: center;
+                padding: 10px;
+            }
+
+            .welcome-content > p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+            }
+
+            .metric-card {
+                padding: 14px;
+            }
+
+            .metric-value {
+                font-size: 20px;
+            }
+
+            .form-grid,
+            .form-grid-3,
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-hero-row {
+                display: block;
+            }
+
+            .hero-status {
+                margin-top: 18px;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            .user-mini-info {
+                display: none;
+            }
+
+            .welcome-card {
+                padding: 25px;
+            }
+
+            .welcome-content h1 {
+                font-size: 43px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .metrics-grid,
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =============================================================
+     TELA DE BOAS-VINDAS
+============================================================= -->
+
+<div id="welcomeScreen" class="welcome-screen">
+
+    <div class="welcome-container">
+
+        <div class="welcome-content">
+
+            <div class="brand">
+                <div class="brand-icon">💧</div>
+                Água na Conta
+            </div>
+
+            <div class="ods-pill">
+                🌎 ODS 6 · Água Potável e Saneamento
+            </div>
+
+            <h1>
+                Cada gota conta.<br>
+                <span>Cada atitude transforma.</span>
+            </h1>
+
+            <p>
+                Descubra seus hábitos de consumo, acompanhe sua economia,
+                compare suas contas e participe de uma jornada de 7 dias
+                para reduzir o desperdício de água.
+            </p>
+
+        </div>
+
+        <div class="welcome-card">
+
+            <h2>Vamos começar? 👋</h2>
+
+            <p>
+                Não precisa criar conta. Informe apenas como podemos
+                chamar você.
+            </p>
+
+            <form
+                id="welcomeForm"
+                onsubmit="event.preventDefault(); startPlatform();"
+                novalidate
+            >
+
+                <div class="input-group">
+
+                    <label for="userName">
+                        Seu nome
+                    </label>
+
+                    <input
+                        id="userName"
+                        type="text"
+                        maxlength="40"
+                        placeholder="Ex.: Janielly"
+                        autocomplete="name"
+                        enterkeyhint="go"
+                        autofocus
+                    >
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-full"
+                >
+                    Começar minha jornada →
+                </button>
+
+            </form>
+
+            <p style="font-size:12px;margin-top:15px;text-align:center;">
+                Seus dados ficam armazenados somente neste navegador.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     APLICAÇÃO
+============================================================= -->
+
+<div id="app" class="app hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                💧
+            </div>
+
+            <div>
+                <strong>Água na Conta</strong>
+                <small>ODS 6 · Extensão</small>
+            </div>
+
+        </div>
+
+        <div class="nav-title">
+            Principal
+        </div>
+
+        <nav class="nav">
+
+            <button
+                class="nav-item active"
+                data-page="dashboard"
+                onclick="navigate('dashboard')"
+            >
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </button>
+
+            <button
+                class="nav-item"
+                data-page="consumo"
+                onclick="navigate('consumo')"
+            >
+                <span class="nav-icon">💧</span>
+                Meu Consumo
+            </button>
+
+            <button
+                class="nav-item"
+                data-page="conta"
+                onclick="navigate('conta')"
+            >
+                <span class="nav-icon">💰</span>
+                Minha Economia
+            </button>
+
+            <button
+                class="nav-item"
+                data-page="desafio"
+                onclick="navigate('desafio')"
+            >
+                <span class="nav-icon">🏆</span>
+                Desafio 7 Dias
+            </button>
+
+            <button
+                class="nav-item"
+                data-page="impacto"
+                onclick="navigate('impacto')"
+            >
+                <span class="nav-icon">🌎</span>
+                Impacto
+            </button>
+
+        </nav>
+
+        <div class="nav-title">
+            Projeto
+        </div>
+
+        <nav class="nav">
+
+            <button
+                class="nav-item"
+                data-page="sobre"
+                onclick="navigate('sobre')"
+            >
+                <span class="nav-icon">ℹ️</span>
+                Sobre o projeto
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <strong>🌱 Pequenas atitudes</strong>
+
+            <p>
+                ajudam a construir um futuro mais sustentável.
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <button
+                class="mobile-menu"
+                onclick="toggleSidebar()"
+                aria-label="Abrir menu"
+            >
+                ☰
+            </button>
+
+            <div class="breadcrumb" id="breadcrumb">
+                Dashboard
+            </div>
+
+            <div class="user-mini">
+
+                <div class="user-mini-info">
+                    <strong id="topUserName">Usuário</strong>
+                    <span>Minha jornada</span>
+                </div>
+
+                <div
+                    class="user-avatar"
+                    id="userAvatar"
+                >
+                    U
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================= -->
+
+            <section id="page-dashboard" class="page active">
+
+                <div class="dashboard-hero">
+
+                    <div class="dashboard-hero-row">
+
+                        <div>
+
+                            <h1 id="dashboardGreeting">
+                                Olá! 👋
+                            </h1>
+
+                            <p>
+                                Acompanhe sua evolução e veja como suas
+                                escolhas estão ajudando a reduzir o
+                                desperdício de água.
+                            </p>
+
+                        </div>
+
+                        <div class="hero-status">
+
+                            <span>Seu nível de economia</span>
+
+                            <strong id="dashboardLevel">
+                                Ainda não calculado
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MÉTRICAS -->
+
+                <div class="metrics-grid">
+
+                    <div class="card metric-card">
+
+                        <div class="metric-top">
+
+                            <div>
+                                <div class="metric-label">
+                                    Consumo estimado
+                                </div>
+                                <div
+                                    class="metric-value"
+                                    id="metricConsumption"
+                                >
+                                    —
+                                </div>
+                            </div>
+
+                            <div class="metric-icon teal">
+                                💧
+                            </div>
+
+                        </div>
+
+                        <div class="metric-description">
+                            litros por mês
+                        </div>
+
+                    </div>
+
+
+                    <div class="card metric-card">
+
+                        <div class="metric-top">
+
+                            <div>
+                                <div class="metric-label">
+                                    Economia acumulada
+                                </div>
+
+                                <div
+                                    class="metric-value"
+                                    id="metricSavings"
+                                >
+                                    R$ 0,00
+                                </div>
+                            </div>
+
+                            <div class="metric-icon green">
+                                💰
+                            </div>
+
+                        </div>
+
+                        <div class="metric-description">
+                            comparações registradas
+                        </div>
+
+                    </div>
+
+
+                    <div class="card metric-card">
+
+                        <div class="metric-top">
+
+                            <div>
+                                <div class="metric-label">
+                                    Última redução
+                                </div>
+
+                                <div
+                                    class="metric-value"
+                                    id="metricReduction"
+                                >
+                                    —
+                                </div>
+                            </div>
+
+                            <div class="metric-icon blue">
+                                📉
+                            </div>
+
+                        </div>
+
+                        <div class="metric-description">
+                            em relação à conta anterior
+                        </div>
+
+                    </div>
+
+
+                    <div class="card metric-card">
+
+                        <div class="metric-top">
+
+                            <div>
+                                <div class="metric-label">
+                                    Desafio
+                                </div>
+
+                                <div
+                                    class="metric-value"
+                                    id="metricChallenge"
+                                >
+                                    0/7
+                                </div>
+                            </div>
+
+                            <div class="metric-icon orange">
+                                🏆
+                            </div>
+
+                        </div>
+
+                        <div class="metric-description">
+                            dias do desafio concluídos
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVOLUÇÃO + META -->
+
+                <div class="dashboard-grid">
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>📈 Evolução das suas contas</h2>
+                                <p>
+                                    Acompanhe sua evolução financeira
+                                </p>
+                            </div>
+
+                            <button
+                                class="btn btn-secondary"
+                                onclick="navigate('conta')"
+                            >
+                                + Registrar
+                            </button>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div id="dashboardChart">
+                                <!-- preenchido pelo JS -->
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>🎯 Seu próximo objetivo</h2>
+                                <p>
+                                    Continue sua jornada
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="goal-card">
+
+                                <div class="goal-top">
+
+                                    <strong id="goalTitle">
+                                        Complete seu primeiro desafio
+                                    </strong>
+
+                                    <span id="goalPercent">
+                                        0%
+                                    </span>
+
+                                </div>
+
+                                <div class="goal-bar">
+                                    <div
+                                        id="goalBar"
+                                        style="width:0%"
+                                    ></div>
+                                </div>
+
+                                <p
+                                    id="goalDescription"
+                                    style="
+                                        margin-top:12px;
+                                        color:var(--text-light);
+                                        font-size:12.5px;
+                                    "
+                                >
+                                    Dê o primeiro passo para começar.
+                                </p>
+
+                            </div>
+
+                            <button
+                                class="btn btn-primary btn-full"
+                                style="margin-top:15px;"
+                                onclick="navigate('desafio')"
+                            >
+                                Ver meus desafios →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ÚLTIMO RESULTADO + DESAFIO -->
+
+                <div class="dashboard-grid-2">
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>💰 Última comparação</h2>
+                                <p>
+                                    Resultado mais recente
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="card-body"
+                            id="dashboardLastComparison"
+                        >
+                            <div class="history-empty">
+                                Ainda não há comparação registrada.
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>🏆 Sua jornada</h2>
+                                <p>
+                                    Desafio de 7 dias
+                                </p>
+                            </div>
+
+                            <button
+                                class="btn btn-secondary"
+                                onclick="navigate('desafio')"
+                            >
+                                Ver
+                            </button>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="goal-card">
+
+                                <div class="goal-top">
+
+                                    <strong>
+                                        Progresso
+                                    </strong>
+
+                                    <span id="dashboardChallengePercent">
+                                        0%
+                                    </span>
+
+                                </div>
+
+                                <div class="goal-bar">
+
+                                    <div
+                                        id="dashboardChallengeBar"
+                                        style="width:0%"
+                                    ></div>
+
+                                </div>
+
+                                <p
+                                    id="dashboardChallengeText"
+                                    style="
+                                        margin-top:12px;
+                                        color:var(--text-light);
+                                        font-size:12.5px;
+                                    "
+                                >
+                                    Você ainda não começou o desafio.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MEU CONSUMO
+            ================================================= -->
+
+            <section id="page-consumo" class="page">
+
+                <div class="page-header">
+
+                    <h1>💧 Meu Consumo</h1>
+
+                    <p>
+                        Faça uma estimativa educativa dos seus hábitos
+                        de consumo de água.
+                    </p>
+
+                </div>
+
+
+                <div class="consumption-layout">
+
+                    <!-- FORM -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>Seus hábitos</h2>
+                                <p>
+                                    Responda algumas perguntas
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="input-group">
+
+                                <label for="people">
+                                    Quantas pessoas moram na residência?
+                                </label>
+
+                                <input
+                                    id="people"
+                                    type="number"
+                                    min="1"
+                                    max="30"
+                                    value="2"
+                                >
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label for="showerMinutes">
+                                    Quanto tempo dura aproximadamente
+                                    cada banho?
+                                </label>
+
+                                <select id="showerMinutes">
+
+                                    <option value="5">
+                                        5 minutos
+                                    </option>
+
+                                    <option value="8">
+                                        8 minutos
+                                    </option>
+
+                                    <option value="10" selected>
+                                        10 minutos
+                                    </option>
+
+                                    <option value="15">
+                                        15 minutos
+                                    </option>
+
+                                    <option value="20">
+                                        20 minutos
+                                    </option>
+
+                                    <option value="25">
+                                        Mais de 20 minutos
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label for="showers">
+                                    Quantos banhos por pessoa por dia?
+                                </label>
+
+                                <select id="showers">
+
+                                    <option value="1" selected>
+                                        1 banho
+                                    </option>
+
+                                    <option value="2">
+                                        2 banhos
+                                    </option>
+
+                                    <option value="3">
+                                        3 banhos
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label for="washer">
+                                    Quantas vezes utiliza a máquina
+                                    de lavar por semana?
+                                </label>
+
+                                <select id="washer">
+
+                                    <option value="1">
+                                        1 vez
+                                    </option>
+
+                                    <option value="2">
+                                        2 vezes
+                                    </option>
+
+                                    <option value="3" selected>
+                                        3 vezes
+                                    </option>
+
+                                    <option value="4">
+                                        4 vezes
+                                    </option>
+
+                                    <option value="5">
+                                        5 ou mais
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label for="tap">
+                                    Você fecha a torneira ao escovar
+                                    os dentes?
+                                </label>
+
+                                <select id="tap">
+
+                                    <option value="sim" selected>
+                                        Sim
+                                    </option>
+
+                                    <option value="nao">
+                                        Não
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <button
+                                class="btn btn-primary btn-full"
+                                onclick="calculateConsumption()"
+                            >
+                                💧 Calcular meu consumo
+                            </button>
+
+                            <p class="help-text">
+                                * Esta é uma estimativa educativa e não
+                                substitui a medição oficial da concessionária.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESULTADO -->
+
+                    <div class="card">
+
+                        <div class="consumption-result">
+
+                            <div class="big-number" id="consumptionTotal">
+                                —
+                            </div>
+
+                            <div class="big-number-label">
+                                litros estimados por mês
+                            </div>
+
+                            <div
+                                class="profile-badge"
+                                id="consumptionProfile"
+                            >
+                                Faça o cálculo
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="consumption-breakdown"
+                            id="consumptionBreakdown"
+                        >
+
+                            <div class="history-empty">
+                                Preencha os dados ao lado para
+                                visualizar sua estimativa.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MINHA ECONOMIA
+            ================================================= -->
+
+            <section id="page-conta" class="page">
+
+                <div class="page-header">
+
+                    <h1>💰 Minha Economia</h1>
+
+                    <p>
+                        Compare suas contas e acompanhe sua evolução
+                        financeira e de consumo.
+                    </p>
+
+                </div>
+
+
+                <div class="comparison-layout">
+
+                    <!-- FORMULÁRIO -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>Nova comparação</h2>
+                                <p>
+                                    Informe os dados das duas contas
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="form-section">
+
+                                <div class="form-section-title">
+                                    📅 Período
+                                </div>
+
+                                <div class="form-grid">
+
+                                    <div class="input-group">
+
+                                        <label for="previousMonth">
+                                            Conta anterior
+                                        </label>
+
+                                        <input
+                                            id="previousMonth"
+                                            type="month"
+                                        >
+
+                                    </div>
+
+                                    <div class="input-group">
+
+                                        <label for="currentMonth">
+                                            Conta atual
+                                        </label>
+
+                                        <input
+                                            id="currentMonth"
+                                            type="month"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-section">
+
+                                <div class="form-section-title">
+                                    💵 Valores das contas
+                                </div>
+
+                                <div class="form-grid">
+
+                                    <div class="input-group">
+
+                                        <label for="previousBill">
+                                            Valor anterior (R$)
+                                        </label>
+
+                                        <input
+                                            id="previousBill"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="180,00"
+                                        >
+
+                                    </div>
+
+                                    <div class="input-group">
+
+                                        <label for="currentBill">
+                                            Valor atual (R$)
+                                        </label>
+
+                                        <input
+                                            id="currentBill"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="135,00"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-section">
+
+                                <div class="form-section-title">
+                                    💧 Consumo em m³
+                                </div>
+
+                                <div class="form-grid">
+
+                                    <div class="input-group">
+
+                                        <label for="previousM3">
+                                            Consumo anterior
+                                        </label>
+
+                                        <input
+                                            id="previousM3"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="18"
+                                        >
+
+                                        <div class="help-text">
+                                            Opcional — consulte sua conta.
+                                        </div>
+
+                                    </div>
+
+                                    <div class="input-group">
+
+                                        <label for="currentM3">
+                                            Consumo atual
+                                        </label>
+
+                                        <input
+                                            id="currentM3"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="14"
+                                        >
+
+                                        <div class="help-text">
+                                            Opcional — consulte sua conta.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                class="btn btn-primary btn-full"
+                                onclick="compareBills()"
+                            >
+                                📊 Analisar minha evolução
+                            </button>
+
+                            <p class="help-text">
+                                Você pode informar apenas os valores
+                                financeiros ou também os m³.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESULTADO -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>📊 Resultado da análise</h2>
+                                <p>
+                                    Sua evolução
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="comparisonResult"
+                            class="result-empty"
+                        >
+
+                            <div class="empty-state">
+
+                                <div class="empty-icon">
+                                    📊
+                                </div>
+
+                                <h3>
+                                    Ainda não há análise
+                                </h3>
+
+                                <p>
+                                    Informe os dados das suas contas
+                                    para descobrir quanto você economizou.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HISTÓRICO -->
+
+                <div
+                    class="card"
+                    style="margin-top:20px;"
+                >
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>📚 Histórico de comparações</h2>
+                            <p>
+                                Acompanhe sua evolução ao longo do tempo
+                            </p>
+                        </div>
+
+                        <button
+                            class="btn btn-outline"
+                            onclick="clearHistory()"
+                        >
+                            Limpar histórico
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="card-body"
+                        id="historyContainer"
+                    >
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DESAFIO
+            ================================================= -->
+
+            <section id="page-desafio" class="page">
+
+                <div class="page-header">
+
+                    <h1>🏆 Desafio 7 Dias</h1>
+
+                    <p>
+                        Uma semana de missões práticas, com quiz e
+                        pontos, para reduzir o desperdício de água.
+                    </p>
+
+                </div>
+
+
+                <div id="journeyHero" class="jr-hero"></div>
+
+                <div id="journeyTrack" class="jr-track-wrap"></div>
+
+                <article
+                    id="dayPanel"
+                    class="day-card"
+                    aria-label="Missões do dia selecionado"
+                ></article>
+
+
+                <div class="jr-foot">
+
+                    <p>
+                        Os litros evitados são estimativas educativas,
+                        calculadas com as mesmas premissas da calculadora
+                        do app (chuveiro: 9 L por minuto; máquina de lavar:
+                        120 L por ciclo) e com valores de referência
+                        divulgados por companhias de saneamento, como a
+                        Sabesp, e pela Water Footprint Network. O resultado
+                        real varia de casa para casa.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="btn btn-outline"
+                        onclick="resetJourney()"
+                    >
+                        Reiniciar desafio
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 IMPACTO
+            ================================================= -->
+
+            <section id="page-impacto" class="page">
+
+                <div class="page-header">
+
+                    <h1>🌎 Impacto</h1>
+
+                    <p>
+                        Transformando pequenas atitudes em resultados.
+                    </p>
+
+                </div>
+
+
+                <div class="impact-hero">
+
+                    <h2>
+                        O impacto começa em cada casa. 💧
+                    </h2>
+
+                    <p>
+                        O objetivo desta plataforma é estimular
+                        mudanças de comportamento relacionadas ao
+                        consumo consciente de água.
+                    </p>
+
+                </div>
+
+
+                <div class="impact-grid">
+
+                    <div class="card impact-card">
+
+                        <div class="icon">💧</div>
+
+                        <strong id="impactLiters">
+                            0 L
+                        </strong>
+
+                        <span>
+                            água economizada pelos registros
+                        </span>
+
+                    </div>
+
+
+                    <div class="card impact-card">
+
+                        <div class="icon">💰</div>
+
+                        <strong id="impactMoney">
+                            R$ 0
+                        </strong>
+
+                        <span>
+                            economia financeira registrada
+                        </span>
+
+                    </div>
+
+
+                    <div class="card impact-card">
+
+                        <div class="icon">🏆</div>
+
+                        <strong id="impactChallenges">
+                            0
+                        </strong>
+
+                        <span>
+                            dias do desafio concluídos
+                        </span>
+
+                    </div>
+
+
+                    <div class="card impact-card">
+
+                        <div class="icon">📊</div>
+
+                        <strong id="impactComparisons">
+                            0
+                        </strong>
+
+                        <span>
+                            comparações realizadas
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>🌱 Por que medir?</h2>
+                            <p>
+                                Acompanhamento gera consciência.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <p
+                            style="
+                                font-size:13px;
+                                color:var(--text-light);
+                                max-width:800px;
+                            "
+                        >
+                            Ao registrar hábitos, comparar contas e
+                            acompanhar resultados, o usuário consegue
+                            visualizar de forma mais concreta os efeitos
+                            de suas escolhas.
+                        </p>
+
+                        <div class="demonstrative">
+
+                            ℹ️ Os indicadores coletivos apresentados
+                            nesta primeira versão são demonstrativos.
+                            Em uma aplicação real, eles seriam alimentados
+                            pelos dados efetivamente coletados durante
+                            a execução do projeto.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SOBRE
+            ================================================= -->
+
+            <section id="page-sobre" class="page">
+
+                <div class="page-header">
+
+                    <h1>ℹ️ Sobre o projeto</h1>
+
+                    <p>
+                        Tecnologia, educação ambiental e ODS.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="card about-card ods-card">
+
+                        <div class="ods-number">
+                            6
+                        </div>
+
+                        <h2>
+                            ODS 6 — Água Potável e Saneamento
+                        </h2>
+
+                        <p>
+                            O projeto Água na Conta busca utilizar
+                            tecnologia para estimular o uso consciente
+                            da água e tornar mais visível a relação
+                            entre hábitos, consumo e economia.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card about-card">
+
+                        <h2>
+                            🎯 Objetivo
+                        </h2>
+
+                        <p>
+                            Criar uma ferramenta acessível que ajude
+                            as pessoas a compreenderem seus hábitos
+                            de consumo e acompanharem possíveis
+                            reduções ao longo do tempo.
+                        </p>
+
+                        <ul class="feature-list">
+
+                            <li>
+                                <span>✓</span>
+                                Estimativa educativa de consumo
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Comparação de contas
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Acompanhamento de economia
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Desafio de mudança de hábitos
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Visualização de impacto
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="card about-card">
+
+                        <h2>
+                            💡 Tecnologia
+                        </h2>
+
+                        <p>
+                            Esta versão utiliza tecnologias web simples,
+                            leves e acessíveis.
+                        </p>
+
+                        <ul class="feature-list">
+
+                            <li>
+                                <span>✓</span>
+                                HTML5
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                CSS3
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                JavaScript
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                LocalStorage
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Design responsivo
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="card about-card">
+
+                        <h2>
+                            🔐 Privacidade
+                        </h2>
+
+                        <p>
+                            A primeira versão não exige cadastro nem
+                            login. Os dados utilizados pela plataforma
+                            são armazenados localmente no navegador.
+                        </p>
+
+                        <p>
+                            Isso reduz a barreira de entrada e facilita
+                            a utilização da plataforma em atividades
+                            de extensão.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn-danger"
+                            style="margin-top:14px;"
+                            onclick="eraseAllData()"
+                        >
+                            Apagar meus dados e recomeçar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toastContainer"
+    class="toast-container"
+></div>
+
+
+<script>
+
+    /* =========================================================
+       DESAFIO 7 DIAS — CONTEÚDO E PONTUAÇÃO
+
+       Cada dia tem 3 missões (fácil, médio, desafio), um quiz e
+       um bônus por concluir as 3 missões.
+
+       Os litros (`liters`) são estimativas educativas: usam as
+       mesmas premissas da calculadora (chuveiro 9 L/min; máquina
+       120 L/ciclo) e valores de referência divulgados pela Sabesp
+       e pela Water Footprint Network. Missões de diagnóstico ou de
+       conscientização ficam com liters: 0 e não entram na conta.
+    ========================================================= */
+
+    const MISSION_POINTS = {
+        facil: 10,
+        medio: 20,
+        desafio: 30
+    };
+
+    const MISSION_LABEL = {
+        facil: "Fácil",
+        medio: "Médio",
+        desafio: "Desafio"
+    };
+
+    const QUIZ_POINTS = 10;
+
+    const DAY_BONUS = 25;
+
+    const LEVELS = [
+        { name: "Gota",   min: 0   },
+        { name: "Riacho", min: 120 },
+        { name: "Rio",    min: 300 },
+        { name: "Lago",   min: 480 },
+        { name: "Oceano", min: 620 }
+    ];
+
+    const CHALLENGE_DAYS = [
+
+        {
+            emoji: "🚿",
+            short: "Banho",
+            title: "Banho consciente",
+            place: "Banheiro",
+            fact:
+                "Um banho de 15 minutos com o chuveiro aberto gasta cerca de 135 litros. " +
+                "Com 5 minutos e o registro fechado na hora de ensaboar, o gasto cai para uns 45 litros: " +
+                "90 litros a menos por banho.",
+            missions: [
+                {
+                    level: "facil",
+                    title: "Cronometre seu banho",
+                    how: "Use o cronômetro do celular no próximo banho e anote quanto tempo ele dura de verdade.",
+                    liters: 0
+                },
+                {
+                    level: "medio",
+                    title: "Tire 2 minutos do banho",
+                    how: "Compare com o tempo que você anotou e encurte o banho em pelo menos 2 minutos.",
+                    liters: 18
+                },
+                {
+                    level: "desafio",
+                    title: "Feche o registro ao se ensaboar",
+                    how: "Molhe o corpo, feche o registro, ensaboe e passe o shampoo. Abra de novo só para enxaguar.",
+                    liters: 27
+                }
+            ],
+            quiz: {
+                question: "Quantos litros gasta, mais ou menos, um banho de 15 minutos com o chuveiro sempre aberto?",
+                options: [
+                    "Cerca de 45 litros",
+                    "Cerca de 135 litros",
+                    "Cerca de 500 litros"
+                ],
+                answer: 1,
+                explain:
+                    "São cerca de 135 litros, segundo a Sabesp. Com 5 minutos e registro fechado " +
+                    "ao ensaboar, o gasto cai para uns 45 litros."
+            }
+        },
+
+        {
+            emoji: "🚰",
+            short: "Torneira",
+            title: "Torneira sob controle",
+            place: "Pia do banheiro e da cozinha",
+            fact:
+                "Escovar os dentes por 5 minutos com a torneira aberta gasta cerca de 12 litros. " +
+                "Fechando a torneira enquanto escova e enxaguando com um copo, você economiza mais de 11 litros.",
+            missions: [
+                {
+                    level: "facil",
+                    title: "Feche a torneira ao escovar os dentes",
+                    how: "Molhe a escova, feche a torneira e use um copo para enxaguar. Vale para todas as escovações do dia.",
+                    liters: 5
+                },
+                {
+                    level: "medio",
+                    title: "Ensaboe a louça com a torneira fechada",
+                    how: "Tire os restos de comida, ensaboe tudo de uma vez e abra a torneira só para enxaguar.",
+                    liters: 20
+                },
+                {
+                    level: "desafio",
+                    title: "Um dia sem torneira correndo à toa",
+                    how: "Até a hora de dormir, feche a torneira sempre que não estiver usando a água: ao ensaboar as mãos, lavar o rosto ou descascar alimentos.",
+                    liters: 10
+                }
+            ],
+            quiz: {
+                question: "Ao lavar a louça, o que mais economiza água?",
+                options: [
+                    "Deixar a torneira meio aberta o tempo todo",
+                    "Ensaboar tudo com a torneira fechada e abrir só para enxaguar",
+                    "Usar somente água quente"
+                ],
+                answer: 1,
+                explain:
+                    "Com a torneira fechada durante o ensaboamento, a água não corre à toa. " +
+                    "Numa lavagem de 15 minutos com a torneira meio aberta, o gasto passa de 100 litros."
+            }
+        },
+
+        {
+            emoji: "🧺",
+            short: "Roupas",
+            title: "Lavanderia esperta",
+            place: "Área de serviço",
+            fact:
+                "Uma lavadora de 5 kg gasta cerca de 135 litros por lavagem. " +
+                "Cada ciclo que você evita, juntando roupa até encher a máquina, é água que você não gasta.",
+            missions: [
+                {
+                    level: "facil",
+                    title: "Espere a máquina encher",
+                    how: "Junte as roupas até chegar à capacidade indicada pelo fabricante antes de ligar a máquina.",
+                    liters: 120
+                },
+                {
+                    level: "medio",
+                    title: "Lave à mão com a torneira fechada",
+                    how: "No tanque, deixe as peças de molho no balde, esfregue com a torneira fechada e abra só para enxaguar.",
+                    tip: "Sem tanque em casa? Vale fazer o mesmo na pia.",
+                    liters: 30
+                },
+                {
+                    level: "desafio",
+                    title: "Reaproveite a água da máquina",
+                    how: "Guarde a água do enxágue num balde e use para limpar o chão, o banheiro ou dar descarga.",
+                    tip: "Nunca use água de reúso para beber, cozinhar ou lavar louça.",
+                    liters: 20
+                }
+            ],
+            quiz: {
+                question: "Qual é a melhor forma de usar a máquina de lavar roupas?",
+                options: [
+                    "Ligar sempre que houver poucas peças sujas",
+                    "Ligar só com a capacidade cheia indicada pelo fabricante",
+                    "Ligar duas vezes por dia, por precaução"
+                ],
+                answer: 1,
+                explain:
+                    "Usar a capacidade indicada reduz o número de ciclos, e cada ciclo evitado " +
+                    "poupa mais de 100 litros."
+            }
+        },
+
+        {
+            emoji: "🔍",
+            short: "Vazamentos",
+            title: "Caça-vazamentos",
+            place: "Casa toda",
+            fact:
+                "Uma torneira apenas pingando desperdiça cerca de 46 litros por dia, mais de 1.300 litros por mês. " +
+                "E muito vazamento é invisível: fica dentro da caixa acoplada ou da parede.",
+            missions: [
+                {
+                    level: "facil",
+                    title: "Faça a ronda das torneiras",
+                    how: "Passe por pias, tanque, chuveiro e mangueiras. Alguma pinga ou escorre depois de fechada? Anote onde.",
+                    tip: "Achou uma torneira pingando? Trocar a borrachinha costuma resolver.",
+                    liters: 0
+                },
+                {
+                    level: "medio",
+                    title: "Faça o teste do corante no vaso",
+                    how: "Pingue algumas gotas de corante alimentício na caixa acoplada e não dê descarga por 20 a 30 minutos. Se a cor aparecer na bacia, há vazamento.",
+                    tip: "Sem caixa acoplada? Observe se escorre água pela bacia sem ninguém usar.",
+                    liters: 0
+                },
+                {
+                    level: "desafio",
+                    title: "Faça o teste do hidrômetro",
+                    how: "Feche todas as torneiras, não use descarga nem máquina e confira se a caixa d’água não está enchendo. Depois observe o hidrômetro: se ele continua marcando consumo, pode haver vazamento.",
+                    liters: 0
+                }
+            ],
+            quiz: {
+                question: "Quanto uma torneira pingando desperdiça, em média, por dia?",
+                options: [
+                    "Cerca de 5 litros",
+                    "Cerca de 46 litros",
+                    "Cerca de 500 litros"
+                ],
+                answer: 1,
+                explain:
+                    "A estimativa citada pela Sabesp é de cerca de 46 litros por dia, " +
+                    "ou mais de 1.300 litros por mês. Pequenos reparos evitam esse desperdício."
+            }
+        },
+
+        {
+            emoji: "🌿",
+            short: "Quintal",
+            title: "Quintal e reúso",
+            place: "Área externa",
+            fact:
+                "Lavar a calçada com mangueira por 15 minutos gasta cerca de 279 litros. " +
+                "Varrer primeiro resolve quase tudo; se ainda precisar de água, 1 ou 2 baldes costumam bastar.",
+            missions: [
+                {
+                    level: "facil",
+                    title: "Regue as plantas na hora certa",
+                    how: "Regue no início da manhã ou no fim da tarde, quando o sol está mais fraco e a água evapora menos. Prefira o regador à mangueira.",
+                    liters: 0
+                },
+                {
+                    level: "medio",
+                    title: "Troque a mangueira pela vassoura",
+                    how: "Varra o quintal, a calçada ou a varanda. Se ainda precisar de água, use 1 ou 2 baldes.",
+                    liters: 279
+                },
+                {
+                    level: "desafio",
+                    title: "Capte e use água da chuva",
+                    how: "Deixe um balde em área aberta num dia de chuva e use essa água para limpar o quintal ou regar as plantas.",
+                    tip: "Não choveu? Reaproveite a água do enxágue da roupa. Nunca use água de reúso para beber ou cozinhar.",
+                    liters: 20
+                }
+            ],
+            quiz: {
+                question: "Por que é melhor regar as plantas no início da manhã ou no fim da tarde?",
+                options: [
+                    "A planta prefere água mais fria",
+                    "A água evapora menos e chega mais às raízes",
+                    "Assim se gasta mais água e a planta cresce mais"
+                ],
+                answer: 1,
+                explain:
+                    "Com o sol mais fraco, a água evapora menos e uma parte maior chega às raízes."
+            }
+        },
+
+        {
+            emoji: "🍽️",
+            short: "Água invisível",
+            title: "A água que você não vê",
+            place: "Alimentação e consumo",
+            fact:
+                "A maior parte da água que usamos não sai da torneira: está embutida no que consumimos. " +
+                "A Water Footprint Network estima mais de 15 mil litros para produzir 1 kg de carne bovina, " +
+                "contra cerca de 300 litros para 1 kg de legumes e verduras.",
+            missions: [
+                {
+                    level: "facil",
+                    title: "Aproveite as sobras",
+                    how: "Planeje uma refeição usando sobras ou alimentos que estão perto de vencer. Comida jogada fora leva junto toda a água usada para produzi-la.",
+                    liters: 0
+                },
+                {
+                    level: "medio",
+                    title: "Descubra a água escondida",
+                    how: "Escolha um alimento ou produto que você usa e pesquise a pegada hídrica dele. Depois, conte o número para alguém.",
+                    liters: 0
+                },
+                {
+                    level: "desafio",
+                    title: "Faça uma refeição com mais vegetais",
+                    how: "Monte uma refeição com mais legumes e verduras e menos carne bovina. Não precisa mudar a dieta toda: uma refeição já conta.",
+                    liters: 0
+                }
+            ],
+            quiz: {
+                question: "Qual destes alimentos tem a maior “água escondida” na produção de 1 kg?",
+                options: [
+                    "Carne bovina",
+                    "Legumes e verduras",
+                    "Todos gastam a mesma quantidade"
+                ],
+                answer: 0,
+                explain:
+                    "Segundo a Water Footprint Network, a carne bovina passa de 15 mil litros por kg. " +
+                    "Legumes e verduras ficam perto de 300 litros por kg."
+            }
+        },
+
+        {
+            emoji: "🤝",
+            short: "Multiplique",
+            title: "Multiplique o hábito",
+            place: "Família e comunidade",
+            fact:
+                "As perdas na distribuição de água no Brasil ficam perto de 40%, segundo o Instituto Trata Brasil. " +
+                "Cuidar da água em casa importa, e contar o que você aprendeu multiplica o efeito.",
+            missions: [
+                {
+                    level: "facil",
+                    title: "Conte para alguém",
+                    how: "Compartilhe com uma pessoa da família, um amigo ou um colega uma descoberta desta semana.",
+                    liters: 0
+                },
+                {
+                    level: "medio",
+                    title: "Deixe um lembrete visível",
+                    how: "Cole um bilhete perto da pia ou do chuveiro com a pergunta “Fechou a torneira?”. Lembretes ajudam o hábito a pegar.",
+                    liters: 0
+                },
+                {
+                    level: "desafio",
+                    title: "Registre sua conta de água",
+                    how: "Abra a aba Minha Economia, informe o consumo em m³ da sua última conta e compare com o mês anterior.",
+                    link: { label: "Abrir Minha Economia", page: "conta" },
+                    liters: 0
+                }
+            ],
+            quiz: {
+                question: "O que a ODS 6, da ONU, propõe?",
+                options: [
+                    "Garantir água potável e saneamento para todos, com gestão sustentável",
+                    "Reduzir as emissões de gases do efeito estufa",
+                    "Acabar com a fome no mundo"
+                ],
+                answer: 0,
+                explain:
+                    "A ODS 6 (Água potável e saneamento) busca garantir a disponibilidade e a gestão " +
+                    "sustentável da água e do saneamento para todas as pessoas."
+            }
+        }
+
+    ];
+
+
+    function dayMaxPoints(d) {
+
+        return CHALLENGE_DAYS[d].missions.reduce(
+            (sum, mission) => sum + MISSION_POINTS[mission.level],
+            0
+        ) + QUIZ_POINTS + DAY_BONUS;
+
+    }
+
+    const JOURNEY_MAX_POINTS =
+        CHALLENGE_DAYS.reduce(
+            (sum, day, d) => sum + dayMaxPoints(d),
+            0
+        );
+
+
+    function emptyJourney() {
+
+        return {
+            tasks: CHALLENGE_DAYS.map(
+                day => day.missions.map(() => false)
+            ),
+            quiz: CHALLENGE_DAYS.map(() => null)
+        };
+
+    }
+
+    /*
+        Aceita o formato antigo (7 booleans em `challenges`) e o novo
+        (`tasks` por missão + `quiz`). No formato antigo, um dia
+        concluído vira as 3 missões do dia concluídas.
+    */
+    function normalizeJourney(saved) {
+
+        const legacy = !Array.isArray(saved.tasks);
+
+        const tasks = CHALLENGE_DAYS.map(
+            (day, d) => day.missions.map(
+                (mission, m) =>
+                    legacy
+                        ? saved.challenges?.[d] === true
+                        : saved.tasks?.[d]?.[m] === true
+            )
+        );
+
+        const quiz = CHALLENGE_DAYS.map((day, d) => {
+
+            const value = saved.quiz?.[d];
+
+            return Number.isInteger(value) &&
+                value >= 0 &&
+                value < day.quiz.options.length
+                    ? value
+                    : null;
+
+        });
+
+        return { tasks, quiz };
+
+    }
+
+    function isDayComplete(d, s = state) {
+
+        return s.tasks[d].every(Boolean);
+
+    }
+
+    function dayPoints(d, s = state) {
+
+        const day = CHALLENGE_DAYS[d];
+
+        let points = 0;
+
+        day.missions.forEach((mission, m) => {
+
+            if (s.tasks[d][m]) {
+
+                points += MISSION_POINTS[mission.level];
+
+            }
+
+        });
+
+        if (s.quiz[d] === day.quiz.answer) {
+
+            points += QUIZ_POINTS;
+
+        }
+
+        if (isDayComplete(d, s)) {
+
+            points += DAY_BONUS;
+
+        }
+
+        return points;
+
+    }
+
+    /*
+        `challenges` (um boolean por dia) e `points` são derivados de
+        `tasks` e `quiz`. O dashboard e o impacto continuam lendo
+        `state.challenges`, sem precisar saber como o dia é composto.
+    */
+    function syncJourney(s = state) {
+
+        s.challenges = CHALLENGE_DAYS.map(
+            (day, d) => isDayComplete(d, s)
+        );
+
+        s.points = CHALLENGE_DAYS.reduce(
+            (sum, day, d) => sum + dayPoints(d, s),
+            0
+        );
+
+    }
+
+    function currentLevel(points) {
+
+        let level = LEVELS[0];
+
+        LEVELS.forEach(item => {
+
+            if (points >= item.min) {
+
+                level = item;
+
+            }
+
+        });
+
+        return level;
+
+    }
+
+
+    /* =========================================================
+       ESTADO DA APLICAÇÃO
+    ========================================================= */
+
+    const STORAGE_KEY = "aguaNaContaV2";
+
+    function createDefaultState() {
+
+        const s = {
+            name: "",
+            consumption: null,
+            comparisons: [],
+            challenges: [],
+            points: 0,
+            ...emptyJourney()
+        };
+
+        syncJourney(s);
+
+        return s;
+
+    }
+
+    let state = loadState();
+
+
+    /* =========================================================
+       STORAGE
+    ========================================================= */
+
+    function loadState() {
+
+        try {
+
+            const saved =
+                localStorage.getItem(STORAGE_KEY);
+
+            if (!saved) {
+
+                return createDefaultState();
+
+            }
+
+            const parsed = JSON.parse(saved);
+
+            const s = {
+                ...createDefaultState(),
+                ...parsed,
+                comparisons:
+                    Array.isArray(parsed.comparisons)
+                        ? parsed.comparisons
+                        : [],
+                ...normalizeJourney(parsed)
+            };
+
+            syncJourney(s);
+
+            return s;
+
+        } catch (error) {
+
+            console.error(error);
+
+            return createDefaultState();
+
+        }
+
+    }
+
+
+    function saveState() {
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(state)
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Não foi possível salvar os dados:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =========================================================
+       INICIALIZAÇÃO
+    ========================================================= */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+            if (state.name) {
+
+                showApplication();
+
+            }
+
+            renderChallenges();
+            renderHistory();
+            updateDashboard();
+            updateImpact();
+
+            setDefaultMonths();
+
+        }
+    );
+
+
+    function setDefaultMonths() {
+
+        const now = new Date();
+
+        const monthKey = date =>
+            `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+
+        const current = monthKey(now);
+
+        const previous =
+            monthKey(
+                new Date(
+                    now.getFullYear(),
+                    now.getMonth() - 1,
+                    1
+                )
+            );
+
+        const previousInput =
+            document.getElementById("previousMonth");
+
+        const currentInput =
+            document.getElementById("currentMonth");
+
+        if (previousInput && !previousInput.value) {
+
+            previousInput.value = previous;
+
+        }
+
+        if (currentInput && !currentInput.value) {
+
+            currentInput.value = current;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       INÍCIO
+    ========================================================= */
+
+    function startPlatform() {
+
+        const input =
+            document.getElementById("userName");
+
+        const name =
+            input.value.trim();
+
+        if (!name) {
+
+            showToast(
+                "Digite seu nome para continuar.",
+                "warning"
+            );
+
+            input.focus();
+
+            return;
+
+        }
+
+        state.name = name;
+
+        saveState();
+
+        showApplication();
+
+        showToast(
+            `Olá, ${name}! Sua jornada começou. 💧`,
+            "success"
+        );
+
+    }
+
+
+    function showApplication() {
+
+        document
+            .getElementById("welcomeScreen")
+            .classList.add("hidden");
+
+        document
+            .getElementById("app")
+            .classList.remove("hidden");
+
+        updateUserInterface();
+
+        navigate("dashboard");
+
+    }
+
+
+    function updateUserInterface() {
+
+        const name =
+            state.name || "Usuário";
+
+        document
+            .getElementById("topUserName")
+            .textContent = name;
+
+        document
+            .getElementById("userAvatar")
+            .textContent =
+                name.charAt(0).toUpperCase();
+
+        document
+            .getElementById("dashboardGreeting")
+            .textContent =
+                `Olá, ${name}! 👋`;
+
+    }
+
+
+    /* =========================================================
+       NAVEGAÇÃO
+    ========================================================= */
+
+    function navigate(page) {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(section => {
+
+                section.classList.remove("active");
+
+            });
+
+        const target =
+            document.getElementById(
+                `page-${page}`
+            );
+
+        if (target) {
+
+            target.classList.add("active");
+
+        }
+
+
+        document
+            .querySelectorAll(".nav-item")
+            .forEach(item => {
+
+                item.classList.toggle(
+                    "active",
+                    item.dataset.page === page
+                );
+
+            });
+
+
+        const labels = {
+
+            dashboard: "Dashboard",
+
+            consumo: "Meu Consumo",
+
+            conta: "Minha Economia",
+
+            desafio: "Desafio 7 Dias",
+
+            impacto: "Impacto",
+
+            sobre: "Sobre o projeto"
+
+        };
+
+        document
+            .getElementById("breadcrumb")
+            .textContent =
+                labels[page] || "Água na Conta";
+
+
+        if (page === "dashboard") {
+
+            updateDashboard();
+
+        }
+
+        if (page === "conta") {
+
+            renderHistory();
+
+        }
+
+        if (page === "desafio") {
+
+            renderChallenges();
+
+        }
+
+        if (page === "impacto") {
+
+            updateImpact();
+
+        }
+
+
+        const sidebar =
+            document.getElementById("sidebar");
+
+        sidebar.classList.remove("open");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    function toggleSidebar() {
+
+        document
+            .getElementById("sidebar")
+            .classList.toggle("open");
+
+    }
+
+
+    /* =========================================================
+       CONSUMO
+    ========================================================= */
+
+    function calculateConsumption() {
+
+        const people =
+            Math.max(
+                1,
+                Number(
+                    document.getElementById("people").value
+                ) || 1
+            );
+
+        const minutes =
+            Number(
+                document.getElementById("showerMinutes").value
+            ) || 10;
+
+        const showers =
+            Number(
+                document.getElementById("showers").value
+            ) || 1;
+
+        const washer =
+            Number(
+                document.getElementById("washer").value
+            ) || 3;
+
+        const tap =
+            document.getElementById("tap").value;
+
+
+        /*
+            Estimativas educativas.
+            Os valores não representam medição oficial.
+        */
+
+        const shower =
+            people *
+            minutes *
+            showers *
+            30 *
+            9;
+
+
+        const washingMachine =
+            washer *
+            4.33 *
+            120;
+
+
+        const tapWaste =
+            tap === "nao"
+                ? people * 5 * 30
+                : 0;
+
+
+        const total =
+            Math.round(
+                shower +
+                washingMachine +
+                tapWaste
+            );
+
+
+        const potentialSaving =
+            Math.round(
+                total * 0.20
+            );
+
+
+        let profile;
+
+        if (total < 9000) {
+
+            profile = "Moderado";
+
+        } else if (total < 15000) {
+
+            profile = "Atenção";
+
+        } else {
+
+            profile = "Alto";
+
+        }
+
+
+        state.consumption = {
+
+            total,
+
+            shower: Math.round(shower),
+
+            washingMachine:
+                Math.round(washingMachine),
+
+            tapWaste:
+                Math.round(tapWaste),
+
+            potentialSaving,
+
+            profile,
+
+            date: new Date().toISOString()
+
+        };
+
+
+        saveState();
+
+        renderConsumption();
+
+        updateDashboard();
+
+        showToast(
+            "Estimativa atualizada! 💧",
+            "success"
+        );
+
+    }
+
+
+    function renderConsumption() {
+
+        if (!state.consumption) {
+
+            return;
+
+        }
+
+        const data =
+            state.consumption;
+
+
+        document
+            .getElementById("consumptionTotal")
+            .textContent =
+                formatNumber(data.total);
+
+
+        document
+            .getElementById("consumptionProfile")
+            .textContent =
+                data.profile;
+
+
+        const total =
+            Math.max(data.total, 1);
+
+
+        const showerPercent =
+            Math.min(
+                100,
+                data.shower / total * 100
+            );
+
+
+        const machinePercent =
+            Math.min(
+                100,
+                data.washingMachine / total * 100
+            );
+
+
+        const tapPercent =
+            Math.min(
+                100,
+                data.tapWaste / total * 100
+            );
+
+
+        document
+            .getElementById("consumptionBreakdown")
+            .innerHTML = `
+
+                <div class="breakdown-item">
+
+                    <div class="breakdown-header">
+
+                        <span>🚿 Banhos</span>
+
+                        <span class="breakdown-value">
+                            ${formatNumber(data.shower)} L
+                        </span>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-bar"
+                            style="width:${showerPercent}%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="breakdown-item">
+
+                    <div class="breakdown-header">
+
+                        <span>👕 Máquina de lavar</span>
+
+                        <span class="breakdown-value">
+                            ${formatNumber(data.washingMachine)} L
+                        </span>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-bar"
+                            style="width:${machinePercent}%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="breakdown-item">
+
+                    <div class="breakdown-header">
+
+                        <span>🚰 Torneira</span>
+
+                        <span class="breakdown-value">
+                            ${formatNumber(data.tapWaste)} L
+                        </span>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-bar"
+                            style="width:${tapPercent}%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="saving-box">
+
+                    <strong>
+                        💡 Potencial de economia:
+                        ${formatNumber(data.potentialSaving)} L/mês
+                    </strong>
+
+                    <span>
+                        Estimativa educativa considerando
+                        uma redução de aproximadamente 20%.
+                    </span>
+
+                </div>
+
+            `;
+
+    }
+
+
+    /* =========================================================
+       COMPARAÇÃO DE CONTAS
+    ========================================================= */
+
+    function compareBills() {
+
+        const previous =
+            Number(
+                document.getElementById("previousBill").value
+            );
+
+        const current =
+            Number(
+                document.getElementById("currentBill").value
+            );
+
+
+        if (
+            !previous ||
+            previous <= 0 ||
+            current < 0
+        ) {
+
+            showToast(
+                "Informe valores válidos para as duas contas.",
+                "warning"
+            );
+
+            return;
+
+        }
+
+
+        const previousM3Input =
+            document.getElementById("previousM3").value;
+
+        const currentM3Input =
+            document.getElementById("currentM3").value;
+
+
+        const previousM3 =
+            previousM3Input === ""
+                ? null
+                : Number(previousM3Input);
+
+
+        const currentM3 =
+            currentM3Input === ""
+                ? null
+                : Number(currentM3Input);
+
+
+        const previousMonth =
+            document.getElementById("previousMonth").value;
+
+        const currentMonth =
+            document.getElementById("currentMonth").value;
+
+
+        const difference =
+            previous - current;
+
+
+        let percentage = 0;
+
+        if (previous > 0) {
+
+            percentage =
+                (difference / previous) * 100;
+
+        }
+
+
+        const isSaving =
+            difference > 0;
+
+
+        const isEqual =
+            difference === 0;
+
+
+        let level = "Sem redução";
+
+        if (isSaving) {
+
+            if (percentage < 10) {
+
+                level = "Baixa";
+
+            } else if (percentage < 20) {
+
+                level = "Média";
+
+            } else if (percentage < 30) {
+
+                level = "Boa";
+
+            } else {
+
+                level = "Excelente";
+
+            }
+
+        }
+
+
+        let m3Difference = null;
+        let litersDifference = null;
+        let consumptionPercentage = null;
+
+
+        if (
+            previousM3 !== null &&
+            currentM3 !== null &&
+            previousM3 > 0 &&
+            currentM3 >= 0
+        ) {
+
+            m3Difference =
+                previousM3 - currentM3;
+
+            litersDifference =
+                m3Difference * 1000;
+
+            consumptionPercentage =
+                (
+                    m3Difference /
+                    previousM3
+                ) * 100;
+
+        }
+
+
+        const comparison = {
+
+            id: Date.now(),
+
+            createdAt:
+                new Date().toISOString(),
+
+            previousMonth,
+
+            currentMonth,
+
+            previousBill: previous,
+
+            currentBill: current,
+
+            difference,
+
+            percentage,
+
+            isSaving,
+
+            isEqual,
+
+            level,
+
+            previousM3,
+
+            currentM3,
+
+            m3Difference,
+
+            litersDifference,
+
+            consumptionPercentage
+
+        };
+
+
+        state.comparisons.push(comparison);
+
+        saveState();
+
+
+        renderComparison(comparison);
+
+        renderHistory();
+
+        updateDashboard();
+
+        updateImpact();
+
+
+        showToast(
+            isSaving
+                ? "Comparação registrada com sucesso! 💰"
+                : "Comparação registrada.",
+            isSaving ? "success" : "warning"
+        );
+
+    }
+
+
+    function renderComparison(data) {
+
+        const result =
+            document.getElementById(
+                "comparisonResult"
+            );
+
+
+        let financialClass =
+            data.isSaving
+                ? "highlight"
+                : data.isEqual
+                    ? ""
+                    : "warning";
+
+
+        let mainMessage = "";
+
+
+        if (data.isSaving) {
+
+            mainMessage = `
+                🌿 <strong>Boa evolução, ${escapeHtml(state.name)}!</strong>
+                Sua conta diminuiu
+                <strong>${formatCurrency(data.difference)}</strong>,
+                representando uma redução de
+                <strong>${formatPercent(data.percentage)}</strong>.
+            `;
+
+        } else if (data.isEqual) {
+
+            mainMessage = `
+                📊 <strong>Sua conta permaneceu igual.</strong>
+                O valor registrado nos dois períodos foi
+                ${formatCurrency(data.currentBill)}.
+            `;
+
+        } else {
+
+            mainMessage = `
+                📌 <strong>O valor da conta aumentou.</strong>
+                Houve um aumento de
+                <strong>${formatCurrency(Math.abs(data.difference))}</strong>.
+                Use também o consumo em m³ para entender melhor
+                a variação.
+            `;
+
+        }
+
+
+        let consumptionHtml = "";
+
+        if (
+            data.previousM3 !== null &&
+            data.currentM3 !== null
+        ) {
+
+            const consumptionSaving =
+                data.m3Difference > 0;
+
+
+            consumptionHtml = `
+
+                <div class="result-grid">
+
+                    <div class="result-box">
+
+                        <span>Consumo anterior</span>
+
+                        <strong>
+                            ${formatM3(data.previousM3)}
+                        </strong>
+
+                        <small>
+                            ${formatNumber(data.previousM3 * 1000)} L
+                        </small>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span>Consumo atual</span>
+
+                        <strong>
+                            ${formatM3(data.currentM3)}
+                        </strong>
+
+                        <small>
+                            ${formatNumber(data.currentM3 * 1000)} L
+                        </small>
+
+                    </div>
+
+
+                    <div class="result-box ${
+                        consumptionSaving
+                            ? "highlight"
+                            : data.m3Difference < 0
+                                ? "warning"
+                                : ""
+                    }">
+
+                        <span>
+                            ${consumptionSaving
+                                ? "Redução de consumo"
+                                : data.m3Difference < 0
+                                    ? "Aumento de consumo"
+                                    : "Variação"
+                            }
+                        </span>
+
+                        <strong>
+                            ${
+                                data.m3Difference > 0
+                                    ? `-${formatM3(data.m3Difference)}`
+                                    : formatM3(Math.abs(data.m3Difference))
+                            }
+                        </strong>
+
+                        <small>
+                            ${
+                                data.litersDifference > 0
+                                    ? `≈ ${formatNumber(Math.abs(data.litersDifference))} litros`
+                                    : data.litersDifference < 0
+                                        ? `≈ +${formatNumber(Math.abs(data.litersDifference))} litros`
+                                        : "Sem alteração"
+                            }
+                        </small>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span>Variação</span>
+
+                        <strong>
+                            ${formatPercent(Math.abs(data.consumptionPercentage))}
+                        </strong>
+
+                        <small>
+                            ${
+                                data.consumptionPercentage > 0
+                                    ? "redução"
+                                    : data.consumptionPercentage < 0
+                                        ? "aumento"
+                                        : "sem alteração"
+                            }
+                        </small>
+
+                    </div>
+
+                </div>
+
+                ${renderConsumptionBars(data)}
+
+            `;
+
+        }
+
+
+        result.className = "";
+
+        result.style.display = "block";
+
+        result.innerHTML = `
+
+            <div style="padding:22px;">
+
+                <div class="result-grid">
+
+                    <div class="result-box">
+
+                        <span>Conta anterior</span>
+
+                        <strong>
+                            ${formatCurrency(data.previousBill)}
+                        </strong>
+
+                        <small>
+                            ${formatMonth(data.previousMonth)}
+                        </small>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span>Conta atual</span>
+
+                        <strong>
+                            ${formatCurrency(data.currentBill)}
+                        </strong>
+
+                        <small>
+                            ${formatMonth(data.currentMonth)}
+                        </small>
+
+                    </div>
+
+
+                    <div class="result-box ${financialClass}">
+
+                        <span>
+                            ${
+                                data.isSaving
+                                    ? "Economia"
+                                    : data.isEqual
+                                        ? "Variação"
+                                        : "Aumento"
+                            }
+                        </span>
+
+                        <strong>
+                            ${
+                                data.isSaving
+                                    ? formatCurrency(data.difference)
+                                    : data.isEqual
+                                        ? "R$ 0,00"
+                                        : `+${formatCurrency(Math.abs(data.difference))}`
+                            }
+                        </strong>
+
+                        <small>
+                            ${
+                                data.isSaving
+                                    ? `${formatPercent(data.percentage)} de redução`
+                                    : data.isEqual
+                                        ? "Sem redução"
+                                        : `${formatPercent(Math.abs(data.percentage))} de aumento`
+                            }
+                        </small>
+
+                    </div>
+
+
+                    <div class="result-box">
+
+                        <span>Nível</span>
+
+                        <strong style="font-size:18px;">
+                            ${data.level}
+                        </strong>
+
+                        <small>
+                            classificação da redução
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                ${renderFinancialBars(data)}
+
+
+                ${consumptionHtml}
+
+
+                ${
+                    data.isSaving
+                        ? renderLevelCard(data)
+                        : ""
+                }
+
+
+                <div class="interpretation">
+
+                    ${mainMessage}
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function renderFinancialBars(data) {
+
+        const max =
+            Math.max(
+                data.previousBill,
+                data.currentBill,
+                1
+            );
+
+
+        const previousWidth =
+            data.previousBill / max * 100;
+
+
+        const currentWidth =
+            data.currentBill / max * 100;
+
+
+        return `
+
+            <div class="comparison-visual">
+
+                <h4>
+                    💵 Comparação financeira
+                </h4>
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+
+                        <span>
+                            Conta anterior
+                        </span>
+
+                        <strong>
+                            ${formatCurrency(data.previousBill)}
+                        </strong>
+
+                    </div>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar previous"
+                            style="width:${previousWidth}%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+
+                        <span>
+                            Conta atual
+                        </span>
+
+                        <strong>
+                            ${formatCurrency(data.currentBill)}
+                        </strong>
+
+                    </div>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar current"
+                            style="width:${currentWidth}%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function renderConsumptionBars(data) {
+
+        const max =
+            Math.max(
+                data.previousM3,
+                data.currentM3,
+                1
+            );
+
+
+        const previousWidth =
+            data.previousM3 / max * 100;
+
+
+        const currentWidth =
+            data.currentM3 / max * 100;
+
+
+        return `
+
+            <div class="comparison-visual">
+
+                <h4>
+                    💧 Comparação de consumo
+                </h4>
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+
+                        <span>
+                            Consumo anterior
+                        </span>
+
+                        <strong>
+                            ${formatM3(data.previousM3)}
+                        </strong>
+
+                    </div>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar previous"
+                            style="width:${previousWidth}%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="bar-row">
+
+                    <div class="bar-label">
+
+                        <span>
+                            Consumo atual
+                        </span>
+
+                        <strong>
+                            ${formatM3(data.currentM3)}
+                        </strong>
+
+                    </div>
+
+                    <div class="bar-track">
+
+                        <div
+                            class="bar current"
+                            style="width:${currentWidth}%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function renderLevelCard(data) {
+
+        let active = 1;
+
+        if (data.percentage >= 30) {
+
+            active = 4;
+
+        } else if (data.percentage >= 20) {
+
+            active = 3;
+
+        } else if (data.percentage >= 10) {
+
+            active = 2;
+
+        }
+
+
+        return `
+
+            <div class="level-card">
+
+                <h4>
+                    SEU NÍVEL DE ECONOMIA
+                </h4>
+
+                <strong>
+                    ${data.level}
+                </strong>
+
+                <div class="level-scale">
+
+                    ${[1,2,3,4]
+                        .map(
+                            item =>
+                                `<div class="level-item ${
+                                    item <= active
+                                        ? "active"
+                                        : ""
+                                }"></div>`
+                        )
+                        .join("")
+                    }
+
+                </div>
+
+                <div class="level-labels">
+
+                    <span>Baixa</span>
+                    <span>Média</span>
+                    <span>Boa</span>
+                    <span>Excelente</span>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =========================================================
+       HISTÓRICO
+    ========================================================= */
+
+    function renderHistory() {
+
+        const container =
+            document.getElementById(
+                "historyContainer"
+            );
+
+
+        if (!container) {
+
+            return;
+
+        }
+
+
+        if (!state.comparisons.length) {
+
+            container.innerHTML = `
+
+                <div class="history-empty">
+
+                    📚<br><br>
+
+                    Você ainda não registrou comparações.
+
+                    <br>
+
+                    Registre suas contas para começar
+                    a construir seu histórico.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        const sorted =
+            [...state.comparisons]
+                .sort(
+                    (a,b) =>
+                        b.id - a.id
+                );
+
+
+        container.innerHTML = `
+
+            <div class="history-table-wrapper">
+
+                <table class="history-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Período</th>
+
+                            <th>Anterior</th>
+
+                            <th>Atual</th>
+
+                            <th>Resultado</th>
+
+                            <th>Redução</th>
+
+                            <th>Nível</th>
+
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${
+                            sorted.map(item => `
+
+                                <tr>
+
+                                    <td>
+                                        ${
+                                            formatMonth(item.currentMonth)
+                                        }
+                                    </td>
+
+                                    <td>
+                                        ${formatCurrency(item.previousBill)}
+                                    </td>
+
+                                    <td>
+                                        ${formatCurrency(item.currentBill)}
+                                    </td>
+
+                                    <td>
+
+                                        ${
+                                            item.difference > 0
+                                                ? `<span style="color:var(--success);font-weight:800;">
+                                                    -${formatCurrency(item.difference)}
+                                                  </span>`
+                                                : item.difference < 0
+                                                    ? `<span style="color:var(--danger);font-weight:800;">
+                                                        +${formatCurrency(Math.abs(item.difference))}
+                                                      </span>`
+                                                    : "R$ 0,00"
+                                        }
+
+                                    </td>
+
+                                    <td>
+
+                                        ${
+                                            item.isSaving
+                                                ? formatPercent(item.percentage)
+                                                : "—"
+                                        }
+
+                                    </td>
+
+                                    <td>
+
+                                        ${
+                                            item.isSaving
+                                                ? `<span class="level-tag">${item.level}</span>`
+                                                : `<span class="level-tag" style="background:var(--warning-light);color:var(--warning);">
+                                                    Sem redução
+                                                  </span>`
+                                        }
+
+                                    </td>
+
+                                    <td>
+
+                                        <button
+                                            class="delete-history"
+                                            onclick="deleteComparison(${item.id})"
+                                            aria-label="Excluir comparação"
+                                        >
+                                            ×
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            `).join("")
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function deleteComparison(id) {
+
+        state.comparisons =
+            state.comparisons.filter(
+                item => item.id !== id
+            );
+
+        saveState();
+
+        renderHistory();
+
+        updateDashboard();
+
+        updateImpact();
+
+        showToast(
+            "Comparação removida.",
+            "warning"
+        );
+
+    }
+
+
+    function clearHistory() {
+
+        if (!state.comparisons.length) {
+
+            showToast(
+                "O histórico já está vazio.",
+                "warning"
+            );
+
+            return;
+
+        }
+
+
+        const confirmed =
+            confirm(
+                "Deseja realmente apagar todo o histórico de comparações?"
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+
+        state.comparisons = [];
+
+        saveState();
+
+        renderHistory();
+
+        updateDashboard();
+
+        updateImpact();
+
+        showToast(
+            "Histórico apagado.",
+            "warning"
+        );
+
+    }
+
+
+    /* =========================================================
+       DESAFIOS
+    ========================================================= */
+
+    let selectedDay = null;
+
+
+    function suggestedDay() {
+
+        const index =
+            state.tasks.findIndex(
+                (list, d) => !isDayComplete(d)
+            );
+
+        return index === -1
+            ? CHALLENGE_DAYS.length - 1
+            : index;
+
+    }
+
+
+    function dayMissionsDone(d) {
+
+        return state.tasks[d].filter(Boolean).length;
+
+    }
+
+
+    function journeyTotals() {
+
+        const days =
+            state.challenges.filter(Boolean).length;
+
+        const missions =
+            state.tasks.reduce(
+                (sum, list) => sum + list.filter(Boolean).length,
+                0
+            );
+
+        const totalMissions =
+            CHALLENGE_DAYS.reduce(
+                (sum, day) => sum + day.missions.length,
+                0
+            );
+
+        let liters = 0;
+
+        CHALLENGE_DAYS.forEach((day, d) => {
+
+            day.missions.forEach((mission, m) => {
+
+                if (state.tasks[d][m]) {
+
+                    liters += mission.liters || 0;
+
+                }
+
+            });
+
+        });
+
+        return { days, missions, totalMissions, liters };
+
+    }
+
+
+    function renderChallenges(options = {}) {
+
+        const hero =
+            document.getElementById("journeyHero");
+
+        const track =
+            document.getElementById("journeyTrack");
+
+        const panel =
+            document.getElementById("dayPanel");
+
+        if (!hero || !track || !panel) {
+
+            return;
+
+        }
+
+        if (selectedDay === null) {
+
+            selectedDay = suggestedDay();
+
+        }
+
+        hero.innerHTML = buildJourneyHero();
+
+        track.innerHTML = buildJourneyTrack();
+
+        panel.innerHTML = buildDayPanel(selectedDay, options);
+
+        /* mantém o dia escolhido visível na trilha (celular) */
+
+        const active =
+            track.querySelector(".jr-day.active");
+
+        if (active && track.scrollWidth > track.clientWidth) {
+
+            track.scrollLeft =
+                active.offsetLeft -
+                (track.clientWidth - active.offsetWidth) / 2;
+
+        }
+
+        /* o botão é recriado a cada render: devolve o foco ao mesmo lugar */
+
+        if (options.focus) {
+
+            const target =
+                document.querySelector(
+                    `[data-focus="${options.focus}"]`
+                );
+
+            if (target) {
+
+                target.focus({ preventScroll: true });
+
+            }
+
+        }
+
+    }
+
+
+    function buildJourneyHero() {
+
+        const totals = journeyTotals();
+
+        const level = currentLevel(state.points);
+
+        const next = LEVELS[LEVELS.indexOf(level) + 1];
+
+        const percent =
+            next
+                ? Math.round(
+                    (state.points - level.min) /
+                    (next.min - level.min) * 100
+                )
+                : 100;
+
+        const finished =
+            totals.days === CHALLENGE_DAYS.length;
+
+        let summary;
+
+        if (finished) {
+
+            summary = "Jornada completa! Você fechou os 7 dias.";
+
+        } else if (totals.missions === 0) {
+
+            summary = "Comece pelo Dia 1: são 3 missões e um quiz.";
+
+        } else {
+
+            summary =
+                `Você já fez ${totals.missions} de ${totals.totalMissions} missões. ` +
+                `O próximo passo é o Dia ${suggestedDay() + 1}.`;
+
+        }
+
+        const levelHint =
+            next
+                ? `Faltam ${formatNumber(next.min - state.points)} pontos para ${next.name}`
+                : "Nível máximo alcançado";
+
+        return `
+
+            <div class="jr-hero-top">
+
+                <div>
+
+                    <h2>Sua jornada de 7 dias</h2>
+
+                    <p class="jr-hero-sub">${summary}</p>
+
+                </div>
+
+                <div class="jr-score">
+
+                    <strong>${formatNumber(state.points)}</strong>
+
+                    <span>de ${formatNumber(JOURNEY_MAX_POINTS)} pontos</span>
+
+                </div>
+
+            </div>
+
+            <div class="jr-level">
+
+                <strong>Nível ${level.name}</strong>
+
+                <span>${levelHint}</span>
+
+            </div>
+
+            <div
+                class="jr-level-bar"
+                role="progressbar"
+                aria-label="Progresso para o próximo nível"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="${percent}"
+            >
+                <div style="width:${percent}%"></div>
+            </div>
+
+            <div class="jr-stats">
+
+                <div class="jr-stat">
+                    <strong>${totals.days}/${CHALLENGE_DAYS.length}</strong>
+                    <span>dias completos</span>
+                </div>
+
+                <div class="jr-stat">
+                    <strong>${totals.missions}/${totals.totalMissions}</strong>
+                    <span>missões feitas</span>
+                </div>
+
+                <div class="jr-stat">
+                    <strong>≈ ${formatNumber(totals.liters)} L</strong>
+                    <span>evitados (estimativa)</span>
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function buildJourneyTrack() {
+
+        const suggested =
+            state.tasks.findIndex(
+                (list, d) => !isDayComplete(d)
+            );
+
+        /* a água da trilha avança conforme as missões de cada dia */
+
+        const segments = CHALLENGE_DAYS.length - 1;
+
+        let filled = 0;
+
+        for (let d = 0; d < segments; d++) {
+
+            filled +=
+                dayMissionsDone(d) /
+                CHALLENGE_DAYS[d].missions.length;
+
+        }
+
+        const fill = Math.round(filled / segments * 100);
+
+        const nodes =
+            CHALLENGE_DAYS
+                .map((day, d) => {
+
+                    const done = isDayComplete(d);
+
+                    const count = dayMissionsDone(d);
+
+                    const classes = ["jr-day"];
+
+                    if (done) {
+
+                        classes.push("done");
+
+                    } else if (count > 0) {
+
+                        classes.push("partial");
+
+                    }
+
+                    if (d === selectedDay) {
+
+                        classes.push("active");
+
+                    }
+
+                    const dots =
+                        day.missions
+                            .map(
+                                (mission, m) =>
+                                    `<i class="${state.tasks[d][m] ? "on" : ""}"></i>`
+                            )
+                            .join("");
+
+                    return `
+
+                        <button
+                            type="button"
+                            class="${classes.join(" ")}"
+                            data-focus="day-${d}"
+                            onclick="selectDay(${d})"
+                            ${d === selectedDay ? 'aria-current="step"' : ""}
+                            aria-label="Dia ${d + 1}: ${day.title}. ${count} de ${day.missions.length} missões feitas."
+                        >
+                            <span class="jr-node">${done ? "✓" : day.emoji}</span>
+                            <span class="jr-day-label">Dia ${d + 1}</span>
+                            <span class="jr-day-name">${day.short}</span>
+                            <span class="jr-dots">${dots}</span>
+                            ${d === suggested ? '<span class="jr-next">Próximo</span>' : ""}
+                        </button>
+
+                    `;
+
+                })
+                .join("");
+
+        return `
+
+            <div class="jr-track" role="group" aria-label="Escolha o dia">
+
+                <div class="jr-line">
+                    <div style="width:${fill}%"></div>
+                </div>
+
+                ${nodes}
+
+            </div>
+
+        `;
+
+    }
+
+
+    function buildDayPanel(d, options) {
+
+        const day = CHALLENGE_DAYS[d];
+
+        const complete = isDayComplete(d);
+
+        const missions =
+            day.missions
+                .map((mission, m) => buildMission(d, m, options))
+                .join("");
+
+        const previous =
+            d > 0
+                ? `<button type="button" class="btn btn-outline" onclick="selectDay(${d - 1})">← Dia ${d}</button>`
+                : "";
+
+        const next =
+            d < CHALLENGE_DAYS.length - 1
+                ? `<button type="button" class="btn btn-primary" onclick="selectDay(${d + 1})">Dia ${d + 2} →</button>`
+                : `<button type="button" class="btn btn-primary" onclick="navigate('impacto')">Ver meu impacto →</button>`;
+
+        const bonus =
+            complete
+                ? `Bônus do dia conquistado: +${DAY_BONUS} pontos`
+                : `Bônus do dia: +${DAY_BONUS} pontos ao concluir as ${day.missions.length} missões`;
+
+        return `
+
+            <header class="day-head">
+
+                <div class="day-emoji" aria-hidden="true">${day.emoji}</div>
+
+                <div>
+
+                    <h2>Dia ${d + 1}: ${day.title}</h2>
+
+                    <p>${day.place}</p>
+
+                </div>
+
+                <div class="day-score">
+
+                    <strong>${dayPoints(d)}</strong>
+
+                    <span>de ${dayMaxPoints(d)} pontos do dia</span>
+
+                </div>
+
+            </header>
+
+            <div class="day-body">
+
+                <div class="day-fact" role="note">
+
+                    <span class="day-fact-icon" aria-hidden="true">💡</span>
+
+                    <div>
+
+                        <strong>Você sabia?</strong>
+
+                        <p>${day.fact}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="day-missions">
+
+                    <h3 class="day-section">
+                        Missões do dia
+                        <span>${dayMissionsDone(d)} de ${day.missions.length} feitas</span>
+                    </h3>
+
+                    ${missions}
+
+                </div>
+
+                ${buildQuiz(d)}
+
+                <div class="day-foot">
+
+                    <div class="day-bonus ${complete ? "earned" : ""}">
+
+                        <span aria-hidden="true">🎁</span>
+
+                        ${bonus}
+
+                    </div>
+
+                    <div class="day-nav">
+
+                        ${previous}
+
+                        ${next}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function buildMission(d, m, options) {
+
+        const mission = CHALLENGE_DAYS[d].missions[m];
+
+        const done = state.tasks[d][m];
+
+        const key = `m-${d}-${m}`;
+
+        const points = MISSION_POINTS[mission.level];
+
+        const chips = [];
+
+        if (mission.liters > 0) {
+
+            chips.push(
+                `<span class="ms-chip">💧 ≈ ${formatNumber(mission.liters)} L evitados</span>`
+            );
+
+        }
+
+        if (mission.link) {
+
+            chips.push(
+                `<button type="button" class="ms-chip" onclick="navigate('${mission.link.page}')">${mission.link.label} →</button>`
+            );
+
+        }
+
+        const actions =
+            done
+                ? `
+                    <span class="ms-done ${options.pop === key ? "ms-pop" : ""}">✓ Feita</span>
+                    <button type="button" class="ms-undo" data-focus="${key}" onclick="toggleMission(${d}, ${m})">Desfazer</button>
+                `
+                : `
+                    <button type="button" class="ms-btn" data-focus="${key}" onclick="toggleMission(${d}, ${m})">Marcar como feita</button>
+                `;
+
+        return `
+
+            <div class="ms ${done ? "done" : ""}">
+
+                <div class="ms-top">
+
+                    <span class="ms-tag ${mission.level}">${MISSION_LABEL[mission.level]}</span>
+
+                    <span class="ms-pts">+${points} pontos</span>
+
+                </div>
+
+                <h3>${mission.title}</h3>
+
+                <p>${mission.how}</p>
+
+                ${mission.tip ? `<p class="ms-tip">💡 ${mission.tip}</p>` : ""}
+
+                <div class="ms-bottom">
+
+                    <div>${chips.join(" ")}</div>
+
+                    <div class="ms-actions">${actions}</div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function buildQuiz(d) {
+
+        const quiz = CHALLENGE_DAYS[d].quiz;
+
+        const chosen = state.quiz[d];
+
+        const answered = chosen !== null;
+
+        const letters = ["A", "B", "C", "D"];
+
+        const options =
+            quiz.options
+                .map((text, i) => {
+
+                    let status = "";
+
+                    if (answered) {
+
+                        if (i === quiz.answer) {
+
+                            status = "correct";
+
+                        } else if (i === chosen) {
+
+                            status = "wrong";
+
+                        }
+
+                    }
+
+                    return `
+
+                        <button
+                            type="button"
+                            class="qz-opt ${status}"
+                            ${answered ? "disabled" : ""}
+                            onclick="answerQuiz(${d}, ${i})"
+                        >
+                            <span class="qz-letter">${letters[i]}</span>
+                            <span>${text}</span>
+                        </button>
+
+                    `;
+
+                })
+                .join("");
+
+        let result = "";
+
+        if (answered) {
+
+            const correct = chosen === quiz.answer;
+
+            result = `
+
+                <div
+                    class="qz-result ${correct ? "ok" : "no"}"
+                    data-focus="quiz-result"
+                    tabindex="-1"
+                    role="status"
+                >
+                    <strong>${correct ? `Certo! +${QUIZ_POINTS} pontos.` : "Quase!"}</strong>
+                    ${quiz.explain}
+                </div>
+
+            `;
+
+        }
+
+        return `
+
+            <section class="day-quiz">
+
+                <div class="qz-head">
+
+                    Quiz do dia
+
+                    <span>+${QUIZ_POINTS} pontos</span>
+
+                </div>
+
+                <h3>${quiz.question}</h3>
+
+                <div class="qz-options">${options}</div>
+
+                ${result}
+
+            </section>
+
+        `;
+
+    }
+
+
+    function selectDay(d) {
+
+        selectedDay = d;
+
+        renderChallenges({ focus: `day-${d}` });
+
+        const panel = document.getElementById("dayPanel");
+
+        if (
+            panel &&
+            panel.getBoundingClientRect().top >
+                window.innerHeight * 0.65
+        ) {
+
+            panel.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+        }
+
+    }
+
+
+    function announceLevelUp(before) {
+
+        const after = currentLevel(state.points);
+
+        if (LEVELS.indexOf(after) > LEVELS.indexOf(before)) {
+
+            showToast(
+                `Novo nível: ${after.name}! 🎉`,
+                "success"
+            );
+
+        }
+
+    }
+
+
+    function toggleMission(d, m) {
+
+        const levelBefore = currentLevel(state.points);
+
+        const wasComplete = isDayComplete(d);
+
+        const nowDone = !state.tasks[d][m];
+
+        state.tasks[d][m] = nowDone;
+
+        syncJourney();
+
+        saveState();
+
+        renderChallenges({
+            focus: `m-${d}-${m}`,
+            pop: `m-${d}-${m}`
+        });
+
+        updateDashboard();
+
+        updateImpact();
+
+        if (!nowDone) {
+
+            showToast("Missão desfeita.");
+
+            return;
+
+        }
+
+        const points =
+            MISSION_POINTS[CHALLENGE_DAYS[d].missions[m].level];
+
+        if (!wasComplete && isDayComplete(d)) {
+
+            const finished =
+                state.challenges.every(Boolean);
+
+            celebrate(finished);
+
+            showToast(
+                finished
+                    ? "Jornada completa! Você fechou os 7 dias. 🌊"
+                    : `Dia ${d + 1} completo! +${points} pontos e bônus de +${DAY_BONUS}. 🏆`,
+                "success"
+            );
+
+        } else {
+
+            showToast(
+                `Missão feita! +${points} pontos 💧`,
+                "success"
+            );
+
+        }
+
+        announceLevelUp(levelBefore);
+
+    }
+
+
+    function answerQuiz(d, choice) {
+
+        if (state.quiz[d] !== null) {
+
+            return;
+
+        }
+
+        const levelBefore = currentLevel(state.points);
+
+        state.quiz[d] = choice;
+
+        syncJourney();
+
+        saveState();
+
+        renderChallenges({ focus: "quiz-result" });
+
+        updateDashboard();
+
+        /* o resultado já aparece ao lado do quiz; só avisa se subiu de nível */
+
+        announceLevelUp(levelBefore);
+
+    }
+
+
+    function celebrate(big) {
+
+        if (
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches
+        ) {
+
+            return;
+
+        }
+
+        const layer = document.createElement("div");
+
+        layer.className = "drop-layer";
+
+        layer.setAttribute("aria-hidden", "true");
+
+        const symbols = ["💧", "💙", "🌊", "✨"];
+
+        const count = big ? 70 : 28;
+
+        for (let i = 0; i < count; i++) {
+
+            const drop = document.createElement("span");
+
+            drop.className = "drop";
+
+            drop.textContent = symbols[i % symbols.length];
+
+            drop.style.left = `${Math.random() * 100}%`;
+
+            drop.style.fontSize = `${16 + Math.random() * 18}px`;
+
+            drop.style.animationDuration =
+                `${1.8 + Math.random() * 1.6}s`;
+
+            drop.style.animationDelay =
+                `${Math.random() * 0.6}s`;
+
+            layer.appendChild(drop);
+
+        }
+
+        document.body.appendChild(layer);
+
+        setTimeout(() => layer.remove(), 4200);
+
+    }
+
+
+    function resetJourney() {
+
+        const confirmed =
+            confirm(
+                "Reiniciar o Desafio 7 Dias? Você perde os pontos e as missões marcadas."
+            );
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+        Object.assign(state, emptyJourney());
+
+        syncJourney();
+
+        saveState();
+
+        selectedDay = 0;
+
+        renderChallenges();
+
+        updateDashboard();
+
+        updateImpact();
+
+        showToast("Desafio reiniciado.", "warning");
+
+    }
+
+
+    function eraseAllData() {
+
+        const confirmed =
+            confirm(
+                "Apagar todos os seus dados deste navegador e voltar à tela inicial?"
+            );
+
+        if (!confirmed) {
+
+            return;
+
+        }
+
+        try {
+
+            localStorage.removeItem(STORAGE_KEY);
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+        location.reload();
+
+    }
+
+
+    /*
+        Enter dentro de um campo dos formulários envia o formulário,
+        como o usuário espera (Meu Consumo e Minha Economia).
+    */
+    document.addEventListener("keydown", function (event) {
+
+        if (
+            event.key !== "Enter" ||
+            event.isComposing ||
+            !(event.target instanceof HTMLInputElement)
+        ) {
+
+            return;
+
+        }
+
+        if (event.target.closest("#page-consumo")) {
+
+            event.preventDefault();
+
+            calculateConsumption();
+
+        } else if (event.target.closest("#page-conta")) {
+
+            event.preventDefault();
+
+            compareBills();
+
+        }
+
+    });
+
+
+    /* =========================================================
+       DASHBOARD
+    ========================================================= */
+
+    function updateDashboard() {
+
+        if (!document.getElementById("app")) {
+
+            return;
+
+        }
+
+
+        updateUserInterface();
+
+
+        /* CONSUMO */
+
+        document
+            .getElementById("metricConsumption")
+            .textContent =
+                state.consumption
+                    ? formatNumber(
+                        state.consumption.total
+                    )
+                    : "—";
+
+
+        /* ECONOMIA */
+
+        const totalSavings =
+            state.comparisons
+                .filter(
+                    item => item.difference > 0
+                )
+                .reduce(
+                    (sum, item) =>
+                        sum + item.difference,
+                    0
+                );
+
+
+        document
+            .getElementById("metricSavings")
+            .textContent =
+                formatCurrency(totalSavings);
+
+
+        /* REDUÇÃO */
+
+        const latest =
+            [...state.comparisons]
+                .sort(
+                    (a,b) =>
+                        b.id - a.id
+                )[0];
+
+
+        document
+            .getElementById("metricReduction")
+            .textContent =
+                latest && latest.isSaving
+                    ? formatPercent(latest.percentage)
+                    : "—";
+
+
+        /* DESAFIO */
+
+        const completed =
+            state.challenges
+                .filter(Boolean)
+                .length;
+
+
+        document
+            .getElementById("metricChallenge")
+            .textContent =
+                `${completed}/7`;
+
+
+        /* NÍVEL */
+
+        let level =
+            latest && latest.isSaving
+                ? latest.level
+                : "Ainda não calculado";
+
+
+        document
+            .getElementById("dashboardLevel")
+            .textContent =
+                level;
+
+
+        /* GRÁFICO */
+
+        renderDashboardChart();
+
+
+        /* ÚLTIMA COMPARAÇÃO */
+
+        renderDashboardLastComparison();
+
+
+        /* DESAFIO */
+
+        const challengePercent =
+            Math.round(
+                completed / 7 * 100
+            );
+
+
+        document
+            .getElementById("dashboardChallengePercent")
+            .textContent =
+                `${challengePercent}%`;
+
+
+        document
+            .getElementById("dashboardChallengeBar")
+            .style.width =
+                `${challengePercent}%`;
+
+
+        document
+            .getElementById("dashboardChallengeText")
+            .textContent =
+                completed === 0
+                    ? (
+                        state.points > 0
+                            ? `Você já somou ${state.points} pontos. Conclua as 3 missões de um dia.`
+                            : "Você ainda não começou o desafio."
+                    )
+                    : completed === 7
+                        ? "Você completou os 7 dias do desafio! 🌱"
+                        : `${completed} de 7 dias concluídos, com ${state.points} pontos.`;
+
+
+        /* OBJETIVO */
+
+        updateGoal(completed, latest);
+
+    }
+
+
+    function renderDashboardLastComparison() {
+
+        const container =
+            document.getElementById(
+                "dashboardLastComparison"
+            );
+
+
+        const latest =
+            [...state.comparisons]
+                .sort(
+                    (a,b) =>
+                        b.id - a.id
+                )[0];
+
+
+        if (!latest) {
+
+            container.innerHTML = `
+
+                <div class="history-empty">
+
+                    📊<br><br>
+
+                    Ainda não há comparação registrada.
+
+                    <br><br>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="navigate('conta')"
+                    >
+                        Registrar primeira conta
+                    </button>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML = `
+
+            <div class="result-grid">
+
+                <div class="result-box">
+
+                    <span>Anterior</span>
+
+                    <strong>
+                        ${formatCurrency(latest.previousBill)}
+                    </strong>
+
+                </div>
+
+                <div class="result-box">
+
+                    <span>Atual</span>
+
+                    <strong>
+                        ${formatCurrency(latest.currentBill)}
+                    </strong>
+
+                </div>
+
+                <div class="result-box ${
+                    latest.isSaving
+                        ? "highlight"
+                        : latest.difference < 0
+                            ? "warning"
+                            : ""
+                }">
+
+                    <span>
+                        ${
+                            latest.isSaving
+                                ? "Economia"
+                                : latest.difference < 0
+                                    ? "Aumento"
+                                    : "Variação"
+                        }
+                    </span>
+
+                    <strong>
+                        ${
+                            latest.isSaving
+                                ? formatCurrency(latest.difference)
+                                : latest.difference < 0
+                                    ? `+${formatCurrency(Math.abs(latest.difference))}`
+                                    : "R$ 0,00"
+                        }
+                    </strong>
+
+                </div>
+
+                <div class="result-box">
+
+                    <span>Redução</span>
+
+                    <strong>
+                        ${
+                            latest.isSaving
+                                ? formatPercent(latest.percentage)
+                                : "—"
+                        }
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-secondary btn-full"
+                onclick="navigate('conta')"
+            >
+                Ver análise completa →
+            </button>
+
+        `;
+
+    }
+
+
+    function renderDashboardChart() {
+
+        const container =
+            document.getElementById(
+                "dashboardChart"
+            );
+
+
+        if (!state.comparisons.length) {
+
+            container.innerHTML = `
+
+                <div class="history-empty">
+
+                    📈<br><br>
+
+                    Seu gráfico aparecerá aqui
+                    depois que você registrar
+                    suas contas.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        const data =
+            [...state.comparisons]
+                .sort(
+                    (a,b) =>
+                        a.id - b.id
+                )
+                .slice(-6);
+
+
+        const max =
+            Math.max(
+                ...data.map(
+                    item =>
+                        Math.max(
+                            item.previousBill,
+                            item.currentBill
+                        )
+                ),
+                1
+            );
+
+
+        container.innerHTML = `
+
+            <div style="
+                height:250px;
+                display:flex;
+                align-items:flex-end;
+                gap:15px;
+                padding:10px 5px 0;
+            ">
+
+                ${
+                    data.map(
+                        item => {
+
+                            const previousHeight =
+                                Math.max(
+                                    8,
+                                    item.previousBill /
+                                    max *
+                                    190
+                                );
+
+
+                            const currentHeight =
+                                Math.max(
+                                    8,
+                                    item.currentBill /
+                                    max *
+                                    190
+                                );
+
+
+                            return `
+
+                                <div style="
+                                    flex:1;
+                                    height:100%;
+                                    display:flex;
+                                    flex-direction:column;
+                                    justify-content:flex-end;
+                                    align-items:center;
+                                ">
+
+                                    <div style="
+                                        display:flex;
+                                        align-items:flex-end;
+                                        gap:4px;
+                                        height:205px;
+                                    ">
+
+                                        <div
+                                            title="Anterior: ${formatCurrency(item.previousBill)}"
+                                            style="
+                                                width:13px;
+                                                height:${previousHeight}px;
+                                                background:#a9c4c8;
+                                                border-radius:5px 5px 0 0;
+                                            "
+                                        ></div>
+
+                                        <div
+                                            title="Atual: ${formatCurrency(item.currentBill)}"
+                                            style="
+                                                width:13px;
+                                                height:${currentHeight}px;
+                                                background:linear-gradient(180deg,#22a6b3,#087f8c);
+                                                border-radius:5px 5px 0 0;
+                                            "
+                                        ></div>
+
+                                    </div>
+
+                                    <div style="
+                                        margin-top:7px;
+                                        font-size:9px;
+                                        color:var(--text-light);
+                                        text-align:center;
+                                        max-width:65px;
+                                    ">
+                                        ${formatMonthShort(item.currentMonth)}
+                                    </div>
+
+                                </div>
+
+                            `;
+
+                        }
+                    ).join("")
+                }
+
+            </div>
+
+
+            <div style="
+                display:flex;
+                justify-content:center;
+                gap:18px;
+                margin-top:10px;
+                font-size:12px;
+                color:var(--text-light);
+            ">
+
+                <span>
+                    <i style="
+                        display:inline-block;
+                        width:9px;
+                        height:9px;
+                        border-radius:2px;
+                        background:#a9c4c8;
+                        margin-right:4px;
+                    "></i>
+                    Anterior
+                </span>
+
+                <span>
+                    <i style="
+                        display:inline-block;
+                        width:9px;
+                        height:9px;
+                        border-radius:2px;
+                        background:#087f8c;
+                        margin-right:4px;
+                    "></i>
+                    Atual
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function updateGoal(completed, latest) {
+
+        const title =
+            document.getElementById(
+                "goalTitle"
+            );
+
+        const percent =
+            document.getElementById(
+                "goalPercent"
+            );
+
+        const bar =
+            document.getElementById(
+                "goalBar"
+            );
+
+        const description =
+            document.getElementById(
+                "goalDescription"
+            );
+
+
+        if (!latest && completed === 0) {
+
+            title.textContent =
+                "Faça sua primeira análise";
+
+            percent.textContent =
+                "0%";
+
+            bar.style.width =
+                "0%";
+
+            description.textContent =
+                "Registre uma conta para começar a acompanhar sua evolução.";
+
+            return;
+
+        }
+
+
+        if (latest && latest.isSaving && latest.percentage >= 30) {
+
+            title.textContent =
+                "Você alcançou 30% de redução!";
+
+            percent.textContent =
+                "100%";
+
+            bar.style.width =
+                "100%";
+
+            description.textContent =
+                "Excelente! Continue mantendo seus hábitos.";
+
+            return;
+
+        }
+
+
+        if (completed < 7) {
+
+            const p =
+                Math.round(
+                    completed / 7 * 100
+                );
+
+
+            title.textContent =
+                "Complete o Desafio 7 Dias";
+
+            percent.textContent =
+                `${p}%`;
+
+            bar.style.width =
+                `${p}%`;
+
+            description.textContent =
+                `${completed}/7 dias do desafio concluídos.`;
+
+            return;
+
+        }
+
+
+        title.textContent =
+            "Continue acompanhando sua evolução";
+
+        percent.textContent =
+            "100%";
+
+        bar.style.width =
+            "100%";
+
+        description.textContent =
+            "Registre novas contas para acompanhar sua evolução.";
+
+    }
+
+
+    /* =========================================================
+       IMPACTO
+    ========================================================= */
+
+    function updateImpact() {
+
+        const liters =
+            state.comparisons
+                .reduce(
+                    (sum, item) =>
+                        sum +
+                        (
+                            item.litersDifference > 0
+                                ? item.litersDifference
+                                : 0
+                        ),
+                    0
+                );
+
+
+        const savings =
+            state.comparisons
+                .reduce(
+                    (sum, item) =>
+                        sum +
+                        (
+                            item.difference > 0
+                                ? item.difference
+                                : 0
+                        ),
+                    0
+                );
+
+
+        const challenges =
+            state.challenges
+                .filter(Boolean)
+                .length;
+
+
+        document
+            .getElementById("impactLiters")
+            .textContent =
+                `${formatNumber(liters)} L`;
+
+
+        document
+            .getElementById("impactMoney")
+            .textContent =
+                formatCurrency(savings);
+
+
+        document
+            .getElementById("impactChallenges")
+            .textContent =
+                challenges;
+
+
+        document
+            .getElementById("impactComparisons")
+            .textContent =
+                state.comparisons.length;
+
+    }
+
+
+    /* =========================================================
+       FORMATAÇÃO
+    ========================================================= */
+
+    function formatCurrency(value) {
+
+        return Number(value || 0)
+            .toLocaleString(
+                "pt-BR",
+                {
+                    style: "currency",
+                    currency: "BRL"
+                }
+            );
+
+    }
+
+
+    function formatNumber(value) {
+
+        return Number(value || 0)
+            .toLocaleString(
+                "pt-BR",
+                {
+                    maximumFractionDigits: 0
+                }
+            );
+
+    }
+
+
+    function formatM3(value) {
+
+        return Number(value || 0)
+            .toLocaleString(
+                "pt-BR",
+                {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 2
+                }
+            ) + " m³";
+
+    }
+
+
+    function formatPercent(value) {
+
+        return Number(value || 0)
+            .toLocaleString(
+                "pt-BR",
+                {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 1
+                }
+            ) + "%";
+
+    }
+
+
+    function formatMonth(value) {
+
+        if (!value) {
+
+            return "Período não informado";
+
+        }
+
+
+        const [
+            year,
+            month
+        ] =
+            value.split("-");
+
+
+        const date =
+            new Date(
+                Number(year),
+                Number(month) - 1,
+                1
+            );
+
+
+        return date.toLocaleDateString(
+            "pt-BR",
+            {
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    function formatMonthShort(value) {
+
+        if (!value) {
+
+            return "—";
+
+        }
+
+
+        const [
+            year,
+            month
+        ] =
+            value.split("-");
+
+
+        const date =
+            new Date(
+                Number(year),
+                Number(month) - 1,
+                1
+            );
+
+
+        return date.toLocaleDateString(
+            "pt-BR",
+            {
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       SEGURANÇA BÁSICA PARA TEXTOS DO USUÁRIO
+    ========================================================= */
+
+    function escapeHtml(text) {
+
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    function showToast(message, type = "") {
+
+        const container =
+            document.getElementById(
+                "toastContainer"
+            );
+
+
+        const toast =
+            document.createElement("div");
+
+
+        toast.className =
+            `toast ${type}`;
+
+
+        toast.textContent =
+            message;
+
+
+        container.appendChild(toast);
+
+
+        setTimeout(
+            () => {
+
+                toast.style.opacity = "0";
+                toast.style.transform =
+                    "translateY(10px)";
+
+                setTimeout(
+                    () => toast.remove(),
+                    250
+                );
+
+            },
+            3000
+        );
+
+    }
+
+
+    /* =========================================================
+       CARREGAR CONSUMO SALVO
+    ========================================================= */
+
+    setTimeout(
+        () => {
+
+            if (state.consumption) {
+
+                renderConsumption();
+
+            }
+
+        },
+        100
+    );
+
+</script>
+
+</body>
+</html>
