@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Água na Conta | Cada gota conta. Cada atitude transforma.</title>
+
+    <meta
+        name="description"
+        content="Água na Conta — plataforma educativa para acompanhar consumo, economia de água e impacto ambiental."
+    >
+
+    
+</head>
+
+<body>
+
+<!-- =============================================================
+     TELA DE BOAS-VINDAS
+============================================================= -->
+
+<div id="welcomeScreen" class="welcome-screen">
+
+    <div class="welcome-container">
+
+        <div class="welcome-content">
+
+            <div class="brand">
+                <div class="brand-icon">💧</div>
+                Água na Conta
+            </div>
+
+            <div class="ods-pill">
+                🌎 ODS 6 · Água Potável e Saneamento
+            </div>
+
+            <h1>
+                Cada gota conta.<br>
+                <span>Cada atitude transforma.</span>
+            </h1>
+
+            <p>
+                Descubra seus hábitos de consumo, acompanhe sua economia,
+                compare suas contas e participe de uma jornada de 7 dias
+                para reduzir o desperdício de água.
+            </p>
+
+        </div>
+
+        <div class="welcome-card">
+
+            <h2>Vamos começar? 👋</h2>
+
+            <p>
+                Não precisa criar conta. Informe apenas como podemos
+                chamar você.
+            </p>
+
+            <div class="input-group">
+
+                <label for="userName">
+                    Seu nome
+                </label>
+
+                <input
+                    id="userName"
+                    type="text"
+                    maxlength="40"
+                    placeholder="Ex.: Janielly"
+                    autocomplete="name"
+                >
+
+            </div>
+
+            <button
+                class="btn btn-primary btn-full"
+                onclick="startPlatform()"
+            >
+                Começar minha jornada →
+            </button>
+
+            <p style="font-size:10px;margin-top:15px;text-align:center;">
+                Seus dados ficam armazenados somente neste navegador.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     APLICAÇÃO
+============================================================= -->
+
+<div id="app" class="app hidden">
+
+    <!-- SIDEBAR -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon">
+                💧
+            </div>
+
+            <div>
+                <strong>Água na Conta</strong>
+                <small>ODS 6 · Extensão</small>
+            </div>
+
+        </div>
+
+        <div class="nav-title">
+            Principal
+        </div>
+
+        <nav class="nav">
+
+            <button
+                class="nav-item active"
+                data-page="dashboard"
+                onclick="navigate('dashboard')"
+            >
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </button>
+
+            <button
+                class="nav-item"
+                data-page="consumo"
+                onclick="navigate('consumo')"
+            >
+                <span class="nav-icon">💧</span>
+                Meu Consumo
+            </button>
+
+            <button
+                class="nav-item"
+                data-page="conta"
+                onclick="navigate('conta')"
+            >
+                <span class="nav-icon">💰</span>
+                Minha Economia
+            </button>
+
+            <button
+                class="nav-item"
+                data-page="desafio"
+                onclick="navigate('desafio')"
+            >
+                <span class="nav-icon">🏆</span>
+                Desafio 7 Dias
+            </button>
+
+            <button
+                class="nav-item"
+                data-page="impacto"
+                onclick="navigate('impacto')"
+            >
+                <span class="nav-icon">🌎</span>
+                Impacto
+            </button>
+
+        </nav>
+
+        <div class="nav-title">
+            Projeto
+        </div>
+
+        <nav class="nav">
+
+            <button
+                class="nav-item"
+                data-page="sobre"
+                onclick="navigate('sobre')"
+            >
+                <span class="nav-icon">ℹ️</span>
+                Sobre o projeto
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <strong>🌱 Pequenas atitudes</strong>
+
+            <p>
+                ajudam a construir um futuro mais sustentável.
+            </p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <button
+                class="mobile-menu"
+                onclick="toggleSidebar()"
+                aria-label="Abrir menu"
+            >
+                ☰
+            </button>
+
+            <div class="breadcrumb" id="breadcrumb">
+                Dashboard
+            </div>
+
+            <div class="user-mini">
+
+                <div class="user-mini-info">
+                    <strong id="topUserName">Usuário</strong>
+                    <span>Minha jornada</span>
+                </div>
+
+                <div
+                    class="user-avatar"
+                    id="userAvatar"
+                >
+                    U
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================= -->
+
+            <section id="page-dashboard" class="page active">
+
+                <div class="dashboard-hero">
+
+                    <div class="dashboard-hero-row">
+
+                        <div>
+
+                            <h1 id="dashboardGreeting">
+                                Olá! 👋
+                            </h1>
+
+                            <p>
+                                Acompanhe sua evolução e veja como suas
+                                escolhas estão ajudando a reduzir o
+                                desperdício de água.
+                            </p>
+
+                        </div>
+
+                        <div class="hero-status">
+
+                            <span>Seu nível de economia</span>
+
+                            <strong id="dashboardLevel">
+                                Ainda não calculado
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MÉTRICAS -->
+
+                <div class="metrics-grid">
+
+                    <div class="card metric-card">
+
+                        <div class="metric-top">
+
+                            <div>
+                                <div class="metric-label">
+                                    Consumo estimado
+                                </div>
+                                <div
+                                    class="metric-value"
+                                    id="metricConsumption"
+                                >
+                                    —
+                                </div>
+                            </div>
+
+                            <div class="metric-icon teal">
+                                💧
+                            </div>
+
+                        </div>
+
+                        <div class="metric-description">
+                            litros por mês
+                        </div>
+
+                    </div>
+
+
+                    <div class="card metric-card">
+
+                        <div class="metric-top">
+
+                            <div>
+                                <div class="metric-label">
+                                    Economia acumulada
+                                </div>
+
+                                <div
+                                    class="metric-value"
+                                    id="metricSavings"
+                                >
+                                    R$ 0,00
+                                </div>
+                            </div>
+
+                            <div class="metric-icon green">
+                                💰
+                            </div>
+
+                        </div>
+
+                        <div class="metric-description">
+                            comparações registradas
+                        </div>
+
+                    </div>
+
+
+                    <div class="card metric-card">
+
+                        <div class="metric-top">
+
+                            <div>
+                                <div class="metric-label">
+                                    Última redução
+                                </div>
+
+                                <div
+                                    class="metric-value"
+                                    id="metricReduction"
+                                >
+                                    —
+                                </div>
+                            </div>
+
+                            <div class="metric-icon blue">
+                                📉
+                            </div>
+
+                        </div>
+
+                        <div class="metric-description">
+                            em relação à conta anterior
+                        </div>
+
+                    </div>
+
+
+                    <div class="card metric-card">
+
+                        <div class="metric-top">
+
+                            <div>
+                                <div class="metric-label">
+                                    Desafio
+                                </div>
+
+                                <div
+                                    class="metric-value"
+                                    id="metricChallenge"
+                                >
+                                    0/7
+                                </div>
+                            </div>
+
+                            <div class="metric-icon orange">
+                                🏆
+                            </div>
+
+                        </div>
+
+                        <div class="metric-description">
+                            desafios concluídos
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EVOLUÇÃO + META -->
+
+                <div class="dashboard-grid">
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>📈 Evolução das suas contas</h2>
+                                <p>
+                                    Acompanhe sua evolução financeira
+                                </p>
+                            </div>
+
+                            <button
+                                class="btn btn-secondary"
+                                onclick="navigate('conta')"
+                            >
+                                + Registrar
+                            </button>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div id="dashboardChart">
+                                <!-- preenchido pelo JS -->
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>🎯 Seu próximo objetivo</h2>
+                                <p>
+                                    Continue sua jornada
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="goal-card">
+
+                                <div class="goal-top">
+
+                                    <strong id="goalTitle">
+                                        Complete seu primeiro desafio
+                                    </strong>
+
+                                    <span id="goalPercent">
+                                        0%
+                                    </span>
+
+                                </div>
+
+                                <div class="goal-bar">
+                                    <div
+                                        id="goalBar"
+                                        style="width:0%"
+                                    ></div>
+                                </div>
+
+                                <p
+                                    id="goalDescription"
+                                    style="
+                                        margin-top:12px;
+                                        color:var(--text-light);
+                                        font-size:11px;
+                                    "
+                                >
+                                    Dê o primeiro passo para começar.
+                                </p>
+
+                            </div>
+
+                            <button
+                                class="btn btn-primary btn-full"
+                                style="margin-top:15px;"
+                                onclick="navigate('desafio')"
+                            >
+                                Ver meus desafios →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ÚLTIMO RESULTADO + DESAFIO -->
+
+                <div class="dashboard-grid-2">
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>💰 Última comparação</h2>
+                                <p>
+                                    Resultado mais recente
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="card-body"
+                            id="dashboardLastComparison"
+                        >
+                            <div class="history-empty">
+                                Ainda não há comparação registrada.
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>🏆 Sua jornada</h2>
+                                <p>
+                                    Desafio de 7 dias
+                                </p>
+                            </div>
+
+                            <button
+                                class="btn btn-secondary"
+                                onclick="navigate('desafio')"
+                            >
+                                Ver
+                            </button>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="goal-card">
+
+                                <div class="goal-top">
+
+                                    <strong>
+                                        Progresso
+                                    </strong>
+
+                                    <span id="dashboardChallengePercent">
+                                        0%
+                                    </span>
+
+                                </div>
+
+                                <div class="goal-bar">
+
+                                    <div
+                                        id="dashboardChallengeBar"
+                                        style="width:0%"
+                                    ></div>
+
+                                </div>
+
+                                <p
+                                    id="dashboardChallengeText"
+                                    style="
+                                        margin-top:12px;
+                                        color:var(--text-light);
+                                        font-size:11px;
+                                    "
+                                >
+                                    Você ainda não concluiu desafios.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MEU CONSUMO
+            ================================================= -->
+
+            <section id="page-consumo" class="page">
+
+                <div class="page-header">
+
+                    <h1>💧 Meu Consumo</h1>
+
+                    <p>
+                        Faça uma estimativa educativa dos seus hábitos
+                        de consumo de água.
+                    </p>
+
+                </div>
+
+
+                <div class="consumption-layout">
+
+                    <!-- FORM -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>Seus hábitos</h2>
+                                <p>
+                                    Responda algumas perguntas
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="input-group">
+
+                                <label for="people">
+                                    Quantas pessoas moram na residência?
+                                </label>
+
+                                <input
+                                    id="people"
+                                    type="number"
+                                    min="1"
+                                    max="30"
+                                    value="2"
+                                >
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label for="showerMinutes">
+                                    Quanto tempo dura aproximadamente
+                                    cada banho?
+                                </label>
+
+                                <select id="showerMinutes">
+
+                                    <option value="5">
+                                        5 minutos
+                                    </option>
+
+                                    <option value="8">
+                                        8 minutos
+                                    </option>
+
+                                    <option value="10" selected>
+                                        10 minutos
+                                    </option>
+
+                                    <option value="15">
+                                        15 minutos
+                                    </option>
+
+                                    <option value="20">
+                                        20 minutos
+                                    </option>
+
+                                    <option value="25">
+                                        Mais de 20 minutos
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label for="showers">
+                                    Quantos banhos por pessoa por dia?
+                                </label>
+
+                                <select id="showers">
+
+                                    <option value="1" selected>
+                                        1 banho
+                                    </option>
+
+                                    <option value="2">
+                                        2 banhos
+                                    </option>
+
+                                    <option value="3">
+                                        3 banhos
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label for="washer">
+                                    Quantas vezes utiliza a máquina
+                                    de lavar por semana?
+                                </label>
+
+                                <select id="washer">
+
+                                    <option value="1">
+                                        1 vez
+                                    </option>
+
+                                    <option value="2">
+                                        2 vezes
+                                    </option>
+
+                                    <option value="3" selected>
+                                        3 vezes
+                                    </option>
+
+                                    <option value="4">
+                                        4 vezes
+                                    </option>
+
+                                    <option value="5">
+                                        5 ou mais
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="input-group">
+
+                                <label for="tap">
+                                    Você fecha a torneira ao escovar
+                                    os dentes?
+                                </label>
+
+                                <select id="tap">
+
+                                    <option value="sim" selected>
+                                        Sim
+                                    </option>
+
+                                    <option value="nao">
+                                        Não
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <button
+                                class="btn btn-primary btn-full"
+                                onclick="calculateConsumption()"
+                            >
+                                💧 Calcular meu consumo
+                            </button>
+
+                            <p class="help-text">
+                                * Esta é uma estimativa educativa e não
+                                substitui a medição oficial da concessionária.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESULTADO -->
+
+                    <div class="card">
+
+                        <div class="consumption-result">
+
+                            <div class="big-number" id="consumptionTotal">
+                                —
+                            </div>
+
+                            <div class="big-number-label">
+                                litros estimados por mês
+                            </div>
+
+                            <div
+                                class="profile-badge"
+                                id="consumptionProfile"
+                            >
+                                Faça o cálculo
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="consumption-breakdown"
+                            id="consumptionBreakdown"
+                        >
+
+                            <div class="history-empty">
+                                Preencha os dados ao lado para
+                                visualizar sua estimativa.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 MINHA ECONOMIA
+            ================================================= -->
+
+            <section id="page-conta" class="page">
+
+                <div class="page-header">
+
+                    <h1>💰 Minha Economia</h1>
+
+                    <p>
+                        Compare suas contas e acompanhe sua evolução
+                        financeira e de consumo.
+                    </p>
+
+                </div>
+
+
+                <div class="comparison-layout">
+
+                    <!-- FORMULÁRIO -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>Nova comparação</h2>
+                                <p>
+                                    Informe os dados das duas contas
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="form-section">
+
+                                <div class="form-section-title">
+                                    📅 Período
+                                </div>
+
+                                <div class="form-grid">
+
+                                    <div class="input-group">
+
+                                        <label for="previousMonth">
+                                            Conta anterior
+                                        </label>
+
+                                        <input
+                                            id="previousMonth"
+                                            type="month"
+                                        >
+
+                                    </div>
+
+                                    <div class="input-group">
+
+                                        <label for="currentMonth">
+                                            Conta atual
+                                        </label>
+
+                                        <input
+                                            id="currentMonth"
+                                            type="month"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-section">
+
+                                <div class="form-section-title">
+                                    💵 Valores das contas
+                                </div>
+
+                                <div class="form-grid">
+
+                                    <div class="input-group">
+
+                                        <label for="previousBill">
+                                            Valor anterior (R$)
+                                        </label>
+
+                                        <input
+                                            id="previousBill"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="180,00"
+                                        >
+
+                                    </div>
+
+                                    <div class="input-group">
+
+                                        <label for="currentBill">
+                                            Valor atual (R$)
+                                        </label>
+
+                                        <input
+                                            id="currentBill"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="135,00"
+                                        >
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-section">
+
+                                <div class="form-section-title">
+                                    💧 Consumo em m³
+                                </div>
+
+                                <div class="form-grid">
+
+                                    <div class="input-group">
+
+                                        <label for="previousM3">
+                                            Consumo anterior
+                                        </label>
+
+                                        <input
+                                            id="previousM3"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="18"
+                                        >
+
+                                        <div class="help-text">
+                                            Opcional — consulte sua conta.
+                                        </div>
+
+                                    </div>
+
+                                    <div class="input-group">
+
+                                        <label for="currentM3">
+                                            Consumo atual
+                                        </label>
+
+                                        <input
+                                            id="currentM3"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            placeholder="14"
+                                        >
+
+                                        <div class="help-text">
+                                            Opcional — consulte sua conta.
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                class="btn btn-primary btn-full"
+                                onclick="compareBills()"
+                            >
+                                📊 Analisar minha evolução
+                            </button>
+
+                            <p class="help-text">
+                                Você pode informar apenas os valores
+                                financeiros ou também os m³.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESULTADO -->
+
+                    <div class="card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>📊 Resultado da análise</h2>
+                                <p>
+                                    Sua evolução
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div
+                            id="comparisonResult"
+                            class="result-empty"
+                        >
+
+                            <div class="empty-state">
+
+                                <div class="empty-icon">
+                                    📊
+                                </div>
+
+                                <h3>
+                                    Ainda não há análise
+                                </h3>
+
+                                <p>
+                                    Informe os dados das suas contas
+                                    para descobrir quanto você economizou.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HISTÓRICO -->
+
+                <div
+                    class="card"
+                    style="margin-top:20px;"
+                >
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>📚 Histórico de comparações</h2>
+                            <p>
+                                Acompanhe sua evolução ao longo do tempo
+                            </p>
+                        </div>
+
+                        <button
+                            class="btn btn-outline"
+                            onclick="clearHistory()"
+                        >
+                            Limpar histórico
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="card-body"
+                        id="historyContainer"
+                    >
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DESAFIO
+            ================================================= -->
+
+            <section id="page-desafio" class="page">
+
+                <div class="page-header">
+
+                    <h1>🏆 Desafio 7 Dias</h1>
+
+                    <p>
+                        Uma semana de pequenas atitudes para
+                        reduzir desperdícios.
+                    </p>
+
+                </div>
+
+
+                <div class="challenge-header">
+
+                    <div class="challenge-top">
+
+                        <div>
+
+                            <h2>
+                                Sua jornada de 7 dias
+                            </h2>
+
+                            <p id="challengeSummary">
+                                Comece seu primeiro desafio.
+                            </p>
+
+                        </div>
+
+                        <div class="challenge-score">
+
+                            <span style="font-size:10px;opacity:.8;">
+                                PONTOS
+                            </span>
+
+                            <strong id="challengePoints">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <div class="challenge-progress">
+
+                        <div
+                            id="challengeProgressBar"
+                            style="width:0%"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="challenge-list"
+                    id="challengeList"
+                >
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 IMPACTO
+            ================================================= -->
+
+            <section id="page-impacto" class="page">
+
+                <div class="page-header">
+
+                    <h1>🌎 Impacto</h1>
+
+                    <p>
+                        Transformando pequenas atitudes em resultados.
+                    </p>
+
+                </div>
+
+
+                <div class="impact-hero">
+
+                    <h2>
+                        O impacto começa em cada casa. 💧
+                    </h2>
+
+                    <p>
+                        O objetivo desta plataforma é estimular
+                        mudanças de comportamento relacionadas ao
+                        consumo consciente de água.
+                    </p>
+
+                </div>
+
+
+                <div class="impact-grid">
+
+                    <div class="card impact-card">
+
+                        <div class="icon">💧</div>
+
+                        <strong id="impactLiters">
+                            0 L
+                        </strong>
+
+                        <span>
+                            água economizada pelos registros
+                        </span>
+
+                    </div>
+
+
+                    <div class="card impact-card">
+
+                        <div class="icon">💰</div>
+
+                        <strong id="impactMoney">
+                            R$ 0
+                        </strong>
+
+                        <span>
+                            economia financeira registrada
+                        </span>
+
+                    </div>
+
+
+                    <div class="card impact-card">
+
+                        <div class="icon">🏆</div>
+
+                        <strong id="impactChallenges">
+                            0
+                        </strong>
+
+                        <span>
+                            desafios concluídos
+                        </span>
+
+                    </div>
+
+
+                    <div class="card impact-card">
+
+                        <div class="icon">📊</div>
+
+                        <strong id="impactComparisons">
+                            0
+                        </strong>
+
+                        <span>
+                            comparações realizadas
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h2>🌱 Por que medir?</h2>
+                            <p>
+                                Acompanhamento gera consciência.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <p
+                            style="
+                                font-size:13px;
+                                color:var(--text-light);
+                                max-width:800px;
+                            "
+                        >
+                            Ao registrar hábitos, comparar contas e
+                            acompanhar resultados, o usuário consegue
+                            visualizar de forma mais concreta os efeitos
+                            de suas escolhas.
+                        </p>
+
+                        <div class="demonstrative">
+
+                            ℹ️ Os indicadores coletivos apresentados
+                            nesta primeira versão são demonstrativos.
+                            Em uma aplicação real, eles seriam alimentados
+                            pelos dados efetivamente coletados durante
+                            a execução do projeto.
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SOBRE
+            ================================================= -->
+
+            <section id="page-sobre" class="page">
+
+                <div class="page-header">
+
+                    <h1>ℹ️ Sobre o projeto</h1>
+
+                    <p>
+                        Tecnologia, educação ambiental e ODS.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="card about-card ods-card">
+
+                        <div class="ods-number">
+                            6
+                        </div>
+
+                        <h2>
+                            ODS 6 — Água Potável e Saneamento
+                        </h2>
+
+                        <p>
+                            O projeto Água na Conta busca utilizar
+                            tecnologia para estimular o uso consciente
+                            da água e tornar mais visível a relação
+                            entre hábitos, consumo e economia.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card about-card">
+
+                        <h2>
+                            🎯 Objetivo
+                        </h2>
+
+                        <p>
+                            Criar uma ferramenta acessível que ajude
+                            as pessoas a compreenderem seus hábitos
+                            de consumo e acompanharem possíveis
+                            reduções ao longo do tempo.
+                        </p>
+
+                        <ul class="feature-list">
+
+                            <li>
+                                <span>✓</span>
+                                Estimativa educativa de consumo
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Comparação de contas
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Acompanhamento de economia
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Desafio de mudança de hábitos
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Visualização de impacto
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="card about-card">
+
+                        <h2>
+                            💡 Tecnologia
+                        </h2>
+
+                        <p>
+                            Esta versão utiliza tecnologias web simples,
+                            leves e acessíveis.
+                        </p>
+
+                        <ul class="feature-list">
+
+                            <li>
+                                <span>✓</span>
+                                HTML5
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                CSS3
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                JavaScript
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                LocalStorage
+                            </li>
+
+                            <li>
+                                <span>✓</span>
+                                Design responsivo
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="card about-card">
+
+                        <h2>
+                            🔐 Privacidade
+                        </h2>
+
+                        <p>
+                            A primeira versão não exige cadastro nem
+                            login. Os dados utilizados pela plataforma
+                            são armazenados localmente no navegador.
+                        </p>
+
+                        <p>
+                            Isso reduz a barreira de entrada e facilita
+                            a utilização da plataforma em atividades
+                            de extensão.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toastContainer"
+    class="toast-container"
+></div>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+</html>
