@@ -2492,6 +2492,131 @@
                 grid-template-columns: 1fr;
             }
         }
+    
+
+        /* =========================================================
+           IDENTIDADE VISUAL PROFISSIONAL — AZUL-PETRÓLEO + VERDE-ÁGUA
+           Refinamento visual sem alterar estrutura ou funcionalidades.
+        ========================================================= */
+        :root {
+            --primary: #087f86;
+            --primary-dark: #07545d;
+            --primary-light: #e4f1f1;
+            --secondary: #15969a;
+            --accent: #43b6a7;
+            --text: #172f3b;
+            --text-light: #657984;
+            --background: #edf2f4;
+            --surface: #ffffff;
+            --border: #d8e2e6;
+            --shadow-sm: 0 5px 18px rgba(15, 39, 52, .055);
+            --shadow: 0 13px 34px rgba(15, 39, 52, .10);
+            --shadow-lg: 0 24px 60px rgba(8, 28, 40, .20);
+        }
+
+        body { background: #edf2f4; color: #172f3b; }
+
+        .welcome-screen {
+            background:
+                radial-gradient(circle at 12% 18%, rgba(31, 147, 151, .22), transparent 31%),
+                radial-gradient(circle at 88% 82%, rgba(22, 94, 112, .28), transparent 34%),
+                linear-gradient(135deg, #0b202d 0%, #103747 54%, #0c4b53 100%);
+        }
+        .welcome-content { color: #f4fbfc; }
+        .welcome-content h1 { color: #f4fbfc; }
+        .welcome-content h1 span { color: #69d2c4; }
+        .welcome-content > p { color: #c0d2d8; }
+        .brand { color: #f2fbfc; }
+        .ods-pill {
+            background: rgba(255,255,255,.09);
+            color: #c8f1e9;
+            border-color: rgba(159, 220, 214, .24);
+        }
+        .welcome-card {
+            background: #f9fbfc;
+            border: 1px solid rgba(255,255,255,.24);
+            box-shadow: 0 28px 75px rgba(0,0,0,.30);
+        }
+
+        .sidebar {
+            background: #102936;
+            border-right: 1px solid #1e3d49;
+            color: #eaf3f5;
+        }
+        .sidebar-brand { border-bottom-color: #294651; }
+        .sidebar-brand strong { color: #f4fbfc; }
+        .sidebar-brand small { color: #9db4bd; }
+        .nav-title { color: #829da7; }
+        .nav-item { color: #b7c9cf; }
+        .nav-item:hover {
+            background: #1b3c48;
+            color: #ffffff;
+        }
+        .nav-item.active {
+            background: linear-gradient(100deg, #176b72, #1c8585);
+            color: #ffffff;
+            box-shadow: inset 3px 0 0 #75d8c8;
+        }
+        .sidebar-bottom {
+            background: linear-gradient(145deg, #173b46, #1b4a50);
+            border-color: #315a61;
+            color: #f0f8f8;
+        }
+        .sidebar-bottom p { color: #b6cbd0; }
+
+        .main { background: #edf2f4; }
+        .topbar {
+            background: rgba(248, 251, 252, .94);
+            border-bottom-color: #d7e1e5;
+            box-shadow: 0 3px 14px rgba(15,39,52,.035);
+        }
+        .mobile-menu {
+            background: #e1eeee;
+            color: #07545d;
+        }
+        .dashboard-hero {
+            background:
+                radial-gradient(circle at 88% 12%, rgba(100, 211, 194, .20), transparent 32%),
+                linear-gradient(120deg, #102d3a 0%, #124b56 58%, #087c7e 100%);
+            box-shadow: 0 16px 34px rgba(9, 42, 54, .17);
+            border: 1px solid rgba(255,255,255,.08);
+        }
+        .hero-status {
+            background: rgba(5, 25, 35, .30);
+            border-color: rgba(207, 244, 238, .20);
+            backdrop-filter: blur(8px);
+        }
+        .card, .estimate-card, .meter-guide {
+            border-color: #dce5e8;
+            box-shadow: 0 7px 22px rgba(18, 48, 60, .055);
+        }
+        .card:hover, .estimate-card:hover {
+            box-shadow: 0 12px 28px rgba(18, 48, 60, .085);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #075e68, #118f8d);
+            box-shadow: 0 8px 18px rgba(7, 94, 104, .22);
+        }
+        .btn-primary:hover { filter: brightness(1.08); }
+        .btn-secondary {
+            background: #e3f0ef;
+            color: #07545d;
+        }
+        .input-group input:focus, .input-group select:focus {
+            border-color: #138b8d;
+            box-shadow: 0 0 0 4px rgba(19,139,141,.12);
+        }
+        .estimate-card {
+            background: linear-gradient(145deg, #ffffff, #f7fbfb);
+        }
+        .estimate-type { background: #edf5f5; }
+        .estimate-type.real { background: #eef3f8; }
+        .page-header h1 { color: #163644; }
+
+        @media (max-width: 900px) {
+            .sidebar { box-shadow: 12px 0 35px rgba(0,0,0,.20); }
+        }
+
     </style>
 </head>
 
