@@ -2023,6 +2023,353 @@
             }
         }
 
+
+        /* =========================================================
+           INFORMAÇÕES EDUCATIVAS E DESBLOQUEIO PROGRESSIVO
+        ========================================================= */
+
+        .estimate-notice {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 0 0 18px;
+            padding: 13px 15px;
+            border: 1px solid #f0ddb9;
+            border-radius: 12px;
+            background: var(--warning-light);
+            color: #76521a;
+            font-size: 12.5px;
+            line-height: 1.55;
+        }
+
+        .estimate-notice strong {
+            display: block;
+            margin-bottom: 2px;
+            color: #76521a;
+        }
+
+        .estimate-notice .notice-icon {
+            flex: 0 0 auto;
+            font-size: 19px;
+            line-height: 1.3;
+        }
+
+        .estimate-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 0 0 20px;
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .estimate-card-heading {
+            grid-column: 1 / -1;
+        }
+
+        .estimate-card-heading h2 {
+            font-size: 17px;
+            margin-bottom: 3px;
+        }
+
+        .estimate-card-heading p {
+            color: var(--text-light);
+            font-size: 12.5px;
+        }
+
+        .estimate-type {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            padding: 13px;
+            border-radius: 12px;
+            background: #f5fbfb;
+            border: 1px solid var(--border);
+        }
+
+        .estimate-type.real {
+            background: #f2f7ff;
+            border-color: #dce8f7;
+        }
+
+        .estimate-type-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 36px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--primary-light);
+            font-size: 18px;
+        }
+
+        .estimate-type.real .estimate-type-icon {
+            background: #e5efff;
+        }
+
+        .estimate-type strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+
+        .estimate-type p {
+            color: var(--text-light);
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .meter-guide {
+            margin-top: 22px;
+            overflow: hidden;
+        }
+
+        .meter-guide-intro {
+            padding: 18px 22px 0;
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .meter-guide-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            padding: 18px 22px 22px;
+        }
+
+        .meter-step {
+            display: flex;
+            gap: 12px;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: #fbfefe;
+        }
+
+        .meter-step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 30px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-weight: 850;
+            font-size: 13px;
+        }
+
+        .meter-step h3 {
+            margin: 1px 0 4px;
+            font-size: 14px;
+        }
+
+        .meter-step p {
+            color: var(--text-light);
+            font-size: 12.5px;
+            line-height: 1.55;
+        }
+
+        .meter-illustration {
+            margin: 0 22px 20px;
+            padding: 16px;
+            border: 1px solid #d5e8e9;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #effafa, #f9fdfd);
+        }
+
+        .meter-illustration-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .meter-device {
+            width: min(100%, 260px);
+            padding: 16px;
+            border: 7px solid #c7d5d7;
+            border-radius: 22px;
+            background: #eaf0ed;
+            box-shadow: inset 0 0 0 2px white, 0 5px 12px rgba(16,71,79,.08);
+        }
+
+        .meter-device-top {
+            margin-bottom: 9px;
+            color: #52686d;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+        }
+
+        .meter-reading {
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+            padding: 10px 7px;
+            border: 2px solid #aebbb3;
+            border-radius: 7px;
+            background: #f8f5df;
+            color: #263c32;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .meter-reading .decimal {
+            color: #c46d27;
+        }
+
+        .meter-device-caption {
+            margin-top: 7px;
+            color: #60746d;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .meter-legend {
+            display: grid;
+            gap: 9px;
+            max-width: 330px;
+            font-size: 12.5px;
+        }
+
+        .meter-legend span {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            color: var(--text-light);
+        }
+
+        .meter-legend b {
+            color: var(--text);
+        }
+
+        .meter-legend-dot {
+            flex: 0 0 10px;
+            width: 10px;
+            height: 10px;
+            margin-top: 5px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .meter-legend-dot.decimal {
+            background: #d88737;
+        }
+
+        .meter-example {
+            margin: 0 22px 22px;
+            padding: 15px 17px;
+            border-left: 4px solid var(--success);
+            border-radius: 9px;
+            background: var(--success-light);
+            font-size: 12.5px;
+        }
+
+        .meter-example strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--success);
+        }
+
+        .jr-day.locked {
+            cursor: not-allowed;
+            opacity: .58;
+        }
+
+        .jr-day.locked:hover .jr-node {
+            border-color: var(--border);
+        }
+
+        .jr-day.locked .jr-node {
+            background: #f1f5f5;
+            color: #71858a;
+            border-style: dashed;
+        }
+
+        .jr-day.locked .jr-day-label {
+            color: var(--text-light);
+        }
+
+        .jr-locked-panel {
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 35px 24px;
+            text-align: center;
+            background: #fbfefe;
+        }
+
+        .jr-locked-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 66px;
+            height: 66px;
+            margin-bottom: 13px;
+            border-radius: 20px;
+            background: var(--warning-light);
+            font-size: 30px;
+        }
+
+        .jr-locked-panel h2 {
+            margin-bottom: 7px;
+            font-size: 21px;
+        }
+
+        .jr-locked-panel p {
+            max-width: 480px;
+            color: var(--text-light);
+            font-size: 13.5px;
+        }
+
+        .jr-unlock-time {
+            margin-top: 13px;
+            padding: 9px 13px;
+            border-radius: 10px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 650px) {
+            .estimate-card,
+            .meter-guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .estimate-card-heading {
+                grid-column: auto;
+            }
+
+            .meter-guide-intro {
+                padding-left: 17px;
+                padding-right: 17px;
+            }
+
+            .meter-guide-grid {
+                padding: 15px 17px 18px;
+            }
+
+            .meter-illustration,
+            .meter-example {
+                margin-left: 17px;
+                margin-right: 17px;
+            }
+        }
+
         /* =========================================================
            RESPONSIVO
         ========================================================= */
@@ -2190,6 +2537,14 @@
                 Não precisa criar conta. Informe apenas como podemos
                 chamar você.
             </p>
+
+            <div class="estimate-notice" role="note">
+                <span class="notice-icon" aria-hidden="true">ℹ️</span>
+                <div>
+                    <strong>Antes de começar</strong>
+                    O Água na Conta apresenta estimativas de consumo de água com base nos hábitos e nas informações fornecidas por você. Os resultados não representam uma medição real do consumo.
+                </div>
+            </div>
 
             <form
                 id="welcomeForm"
@@ -2418,6 +2773,29 @@
                     </div>
 
                 </div>
+
+                <article class="estimate-card" aria-labelledby="estimateCardTitle">
+                    <div class="estimate-card-heading">
+                        <h2 id="estimateCardTitle">💧 Você sabe como seu consumo é calculado?</h2>
+                        <p>O Água na Conta utiliza as informações sobre seus hábitos diários para estimar seu consumo de água.</p>
+                    </div>
+
+                    <div class="estimate-type">
+                        <span class="estimate-type-icon" aria-hidden="true">📊</span>
+                        <div>
+                            <strong>Estimativa do Água na Conta</strong>
+                            <p>Calculada com base nos hábitos e dados informados pelo usuário.</p>
+                        </div>
+                    </div>
+
+                    <div class="estimate-type real">
+                        <span class="estimate-type-icon" aria-hidden="true">🔢</span>
+                        <div>
+                            <strong>Medição do hidrômetro</strong>
+                            <p>Registra o volume acumulado de água que passa pelo aparelho na residência.</p>
+                        </div>
+                    </div>
+                </article>
 
 
                 <!-- MÉTRICAS -->
@@ -2969,6 +3347,78 @@
                     </div>
 
                 </div>
+
+                <section class="card meter-guide" aria-labelledby="meterGuideTitle">
+                    <div class="card-header">
+                        <div>
+                            <h2 id="meterGuideTitle">🔎 Aprenda a ler seu hidrômetro</h2>
+                            <p>Entenda como acompanhar o consumo real da sua residência</p>
+                        </div>
+                    </div>
+
+                    <p class="meter-guide-intro">
+                        O hidrômetro é o aparelho instalado na entrada de água do imóvel. Ele registra o volume que passa pela tubulação e ajuda a concessionária e o morador a acompanhar o consumo.
+                    </p>
+
+                    <div class="meter-illustration">
+                        <div class="meter-illustration-layout">
+                            <div class="meter-device" role="img" aria-label="Ilustração educativa de um hidrômetro com números pretos e casas decimais vermelhas">
+                                <div class="meter-device-top">HIDRÔMETRO • m³</div>
+                                <div class="meter-reading">
+                                    <span>0</span><span>1</span><span>2</span><span>3</span><span class="decimal">4</span><span class="decimal">5</span>
+                                </div>
+                                <div class="meter-device-caption">Ilustração demonstrativa — não representa uma leitura real</div>
+                            </div>
+                            <div class="meter-legend">
+                                <span><i class="meter-legend-dot"></i><span><b>Números pretos:</b> normalmente indicam os metros cúbicos (m³) consumidos.</span></span>
+                                <span><i class="meter-legend-dot decimal"></i><span><b>Números vermelhos:</b> geralmente representam frações do metro cúbico, conforme o modelo do aparelho.</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="meter-guide-grid">
+                        <article class="meter-step">
+                            <span class="meter-step-number">1</span>
+                            <div>
+                                <h3>O que é e para que serve?</h3>
+                                <p>É o aparelho que mede o volume de água que entra no imóvel. A leitura ajuda a acompanhar o consumo e verificar possíveis aumentos.</p>
+                            </div>
+                        </article>
+
+                        <article class="meter-step">
+                            <span class="meter-step-number">2</span>
+                            <div>
+                                <h3>Como identificar os números?</h3>
+                                <p>Observe o visor. Em muitos modelos, os números pretos mostram os m³ inteiros e os vermelhos indicam partes menores. Confira a orientação do fabricante ou da concessionária para o seu modelo.</p>
+                            </div>
+                        </article>
+
+                        <article class="meter-step">
+                            <span class="meter-step-number">3</span>
+                            <div>
+                                <h3>Como fazer a leitura?</h3>
+                                <p>Localize o visor, anote os números indicados e registre a data. Para acompanhar o consumo em m³, utilize a parte inteira indicada no aparelho e mantenha o mesmo padrão nas próximas leituras.</p>
+                            </div>
+                        </article>
+
+                        <article class="meter-step">
+                            <span class="meter-step-number">4</span>
+                            <div>
+                                <h3>Como comparar duas leituras?</h3>
+                                <p>Faça uma nova leitura depois de um período e subtraia a leitura anterior da atual. A diferença indica o volume consumido no intervalo, desde que as duas leituras estejam na mesma unidade e padrão.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="meter-example">
+                        <strong>Exemplo simples de comparação</strong>
+                        Se a leitura anterior era 0120 m³ e a atual é 0127 m³, a diferença é de 7 m³ no período entre as duas leituras.
+                    </div>
+
+                    <p class="meter-guide-intro" style="padding-top:0;padding-bottom:20px;">
+                        <strong>Importante:</strong> o Água na Conta não realiza a leitura do hidrômetro nem recebe dados diretamente do aparelho. Esta área é educativa: você mesmo consulta o equipamento e pode usar as informações para acompanhar seu consumo. A estimativa calculada no formulário continua sendo independente dessa medição.
+                    </p>
+                </section>
 
             </section>
 
@@ -4110,6 +4560,8 @@
             comparisons: [],
             challenges: [],
             points: 0,
+            dayCompletedAt: CHALLENGE_DAYS.map(() => null),
+            dayUnlockAt: CHALLENGE_DAYS.map(() => null),
             ...emptyJourney()
         };
 
@@ -4148,8 +4600,30 @@
                     Array.isArray(parsed.comparisons)
                         ? parsed.comparisons
                         : [],
-                ...normalizeJourney(parsed)
+                ...normalizeJourney(parsed),
+                dayCompletedAt: Array.isArray(parsed.dayCompletedAt)
+                    ? CHALLENGE_DAYS.map((day, d) => Number.isFinite(parsed.dayCompletedAt[d]) ? parsed.dayCompletedAt[d] : null)
+                    : CHALLENGE_DAYS.map(() => null),
+                dayUnlockAt: Array.isArray(parsed.dayUnlockAt)
+                    ? CHALLENGE_DAYS.map((day, d) => Number.isFinite(parsed.dayUnlockAt[d]) ? parsed.dayUnlockAt[d] : null)
+                    : CHALLENGE_DAYS.map(() => null)
             };
+
+            /* Migração dos progressos antigos: preserva dias já concluídos e
+               distribui horários históricos em intervalos de 24 horas. */
+            if (!Array.isArray(parsed.dayCompletedAt)) {
+                const completedDays = CHALLENGE_DAYS
+                    .map((day, d) => isDayComplete(d, s) ? d : -1)
+                    .filter(d => d >= 0);
+                const now = Date.now();
+                completedDays.forEach((d, index) => {
+                    const completedAt = now - ((completedDays.length - index) * 24 * 60 * 60 * 1000);
+                    s.dayCompletedAt[d] = completedAt;
+                    if (d + 1 < CHALLENGE_DAYS.length) {
+                        s.dayUnlockAt[d + 1] = completedAt + 24 * 60 * 60 * 1000;
+                    }
+                });
+            }
 
             syncJourney(s);
 
@@ -4205,6 +4679,7 @@
             renderHistory();
             updateDashboard();
             updateImpact();
+            saveState();
 
             setDefaultMonths();
 
@@ -5649,18 +6124,64 @@
     ========================================================= */
 
     let selectedDay = null;
+    let unlockRefreshTimer = null;
+
+    const DAY_UNLOCK_DELAY = 24 * 60 * 60 * 1000;
+
+    function isDayUnlocked(d, s = state) {
+        if (d === 0) return true;
+        const previousCompleted = s.dayCompletedAt?.[d - 1];
+        const unlockAt = s.dayUnlockAt?.[d];
+        return Number.isFinite(previousCompleted) &&
+            Number.isFinite(unlockAt) &&
+            Date.now() >= unlockAt;
+    }
+
+    function formatUnlockDate(timestamp) {
+        return new Date(timestamp).toLocaleString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    }
+
+    function scheduleUnlockRefresh() {
+        if (unlockRefreshTimer) {
+            clearTimeout(unlockRefreshTimer);
+            unlockRefreshTimer = null;
+        }
+
+        const nextUnlock = state.dayUnlockAt
+            .filter(value => Number.isFinite(value) && value > Date.now())
+            .sort((a, b) => a - b)[0];
+
+        if (nextUnlock) {
+            unlockRefreshTimer = setTimeout(() => {
+                renderChallenges();
+                updateDashboard();
+            }, Math.min(nextUnlock - Date.now() + 50, 2147483000));
+        }
+    }
 
 
     function suggestedDay() {
 
         const index =
             state.tasks.findIndex(
-                (list, d) => !isDayComplete(d)
+                (list, d) => !isDayComplete(d) && isDayUnlocked(d)
             );
 
-        return index === -1
+        if (index !== -1) return index;
+
+        const lockedIncomplete = state.tasks.findIndex(
+            (list, d) => !isDayComplete(d)
+        );
+
+        return lockedIncomplete === -1
             ? CHALLENGE_DAYS.length - 1
-            : index;
+            : Math.max(0, lockedIncomplete - 1);
 
     }
 
@@ -5727,10 +6248,8 @@
 
         }
 
-        if (selectedDay === null) {
-
+        if (selectedDay === null || !isDayUnlocked(selectedDay)) {
             selectedDay = suggestedDay();
-
         }
 
         hero.innerHTML = buildJourneyHero();
@@ -5738,6 +6257,7 @@
         track.innerHTML = buildJourneyTrack();
 
         panel.innerHTML = buildDayPanel(selectedDay, options);
+        scheduleUnlockRefresh();
 
         /* mantém o dia escolhido visível na trilha (celular) */
 
@@ -5908,9 +6428,13 @@
 
                     const done = isDayComplete(d);
 
+                    const unlocked = isDayUnlocked(d);
+
                     const count = dayMissionsDone(d);
 
                     const classes = ["jr-day"];
+
+                    if (!unlocked) classes.push("locked");
 
                     if (done) {
 
@@ -5943,10 +6467,11 @@
                             class="${classes.join(" ")}"
                             data-focus="day-${d}"
                             onclick="selectDay(${d})"
+                            ${!unlocked ? "disabled" : ""}
                             ${d === selectedDay ? 'aria-current="step"' : ""}
-                            aria-label="Dia ${d + 1}: ${day.title}. ${count} de ${day.missions.length} missões feitas."
+                            aria-label="Dia ${d + 1}: ${day.title}. ${!unlocked ? "Bloqueado" : `${count} de ${day.missions.length} missões feitas.`}"
                         >
-                            <span class="jr-node">${done ? "✓" : day.emoji}</span>
+                            <span class="jr-node">${!unlocked ? "🔒" : done ? "✓" : day.emoji}</span>
                             <span class="jr-day-label">Dia ${d + 1}</span>
                             <span class="jr-day-name">${day.short}</span>
                             <span class="jr-dots">${dots}</span>
@@ -5978,6 +6503,21 @@
     function buildDayPanel(d, options) {
 
         const day = CHALLENGE_DAYS[d];
+
+        if (!isDayUnlocked(d)) {
+            const unlockAt = state.dayUnlockAt[d];
+            const previousDay = d;
+            return `
+                <div class="jr-locked-panel" role="status">
+                    <div class="jr-locked-icon" aria-hidden="true">🔒</div>
+                    <h2>Dia ${d + 1} bloqueado</h2>
+                    <p>Continue respeitando o intervalo do desafio. O Dia ${d + 1} será liberado 24 horas após a conclusão do Dia ${previousDay}.</p>
+                    ${Number.isFinite(unlockAt)
+                        ? `<div class="jr-unlock-time">Liberação prevista: ${formatUnlockDate(unlockAt)}</div>`
+                        : `<div class="jr-unlock-time">Conclua o Dia ${previousDay} para iniciar a contagem de 24 horas.</div>`}
+                </div>
+            `;
+        }
 
         const complete = isDayComplete(d);
 
@@ -6248,6 +6788,11 @@
 
     function selectDay(d) {
 
+        if (!isDayUnlocked(d)) {
+            showToast("Este dia ainda está bloqueado. Aguarde a liberação após 24 horas.", "warning");
+            return;
+        }
+
         selectedDay = d;
 
         renderChallenges({ focus: `day-${d}` });
@@ -6288,6 +6833,16 @@
 
     function toggleMission(d, m) {
 
+        if (!isDayUnlocked(d)) {
+            showToast("Este dia ainda está bloqueado.", "warning");
+            return;
+        }
+
+        if (state.dayCompletedAt[d] && state.tasks[d][m]) {
+            showToast("Este dia já foi concluído. As missões finalizadas ficam preservadas para manter sua sequência.", "warning");
+            return;
+        }
+
         const levelBefore = currentLevel(state.points);
 
         const wasComplete = isDayComplete(d);
@@ -6297,6 +6852,15 @@
         state.tasks[d][m] = nowDone;
 
         syncJourney();
+
+        if (!wasComplete && isDayComplete(d)) {
+            const completedAt = Date.now();
+            state.dayCompletedAt[d] = completedAt;
+
+            if (d + 1 < CHALLENGE_DAYS.length) {
+                state.dayUnlockAt[d + 1] = completedAt + DAY_UNLOCK_DELAY;
+            }
+        }
 
         saveState();
 
@@ -6330,7 +6894,7 @@
             showToast(
                 finished
                     ? "Jornada completa! Você fechou os 7 dias. 🌊"
-                    : `Dia ${d + 1} completo! +${points} pontos e bônus de +${DAY_BONUS}. 🏆`,
+                    : `Dia ${d + 1} completo! O próximo dia será liberado em 24 horas. 🏆`,
                 "success"
             );
 
@@ -6349,6 +6913,11 @@
 
 
     function answerQuiz(d, choice) {
+
+        if (!isDayUnlocked(d)) {
+            showToast("Este dia ainda está bloqueado.", "warning");
+            return;
+        }
 
         if (state.quiz[d] !== null) {
 
@@ -6440,6 +7009,8 @@
         }
 
         Object.assign(state, emptyJourney());
+        state.dayCompletedAt = CHALLENGE_DAYS.map(() => null);
+        state.dayUnlockAt = CHALLENGE_DAYS.map(() => null);
 
         syncJourney();
 
@@ -7353,4 +7924,4 @@
 </script>
 
 </body>
-</html>
+</html>
