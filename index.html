@@ -2617,6 +2617,64 @@
             .sidebar { box-shadow: 12px 0 35px rgba(0,0,0,.20); }
         }
 
+        /* Refinamento visual: menos branco, mais tons minerais e água */
+        :root {
+            --background: #e5efed;
+            --surface: #f0f6f4;
+            --border: #cbdedb;
+            --text: #173640;
+            --text-light: #607a7e;
+            --primary-light: #d7eeea;
+        }
+        body, .main { background: #e5efed; }
+        .topbar { background: rgba(235, 244, 241, .96); border-bottom-color: #cbdedb; }
+        .content { background: transparent; }
+        .card, .estimate-card, .meter-guide {
+            background: linear-gradient(145deg, #f2f7f5, #eaf2ef);
+            border-color: #cbdedb;
+            box-shadow: 0 8px 22px rgba(17, 61, 66, .07);
+        }
+        .card-header { border-bottom-color: #d5e4e0; }
+        .estimate-card { background: linear-gradient(145deg, #f4f8f6, #e5f0ec); }
+        .topbar, .card, .estimate-card, .meter-guide, .sidebar-bottom { backdrop-filter: blur(8px); }
+        .welcome-screen {
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 12% 18%, rgba(85, 195, 177, .22), transparent 28%),
+                radial-gradient(circle at 88% 82%, rgba(35, 135, 143, .25), transparent 31%),
+                linear-gradient(135deg, #102b38 0%, #124451 55%, #126b69 100%);
+        }
+        .welcome-screen::before, .welcome-screen::after {
+            content: ""; position: absolute; pointer-events: none; border-radius: 50%;
+            border: 1px solid rgba(181, 238, 224, .15);
+        }
+        .welcome-screen::before { width: 390px; height: 390px; right: -115px; top: -145px; box-shadow: 0 0 0 28px rgba(181,238,224,.025), 0 0 0 58px rgba(181,238,224,.02); }
+        .welcome-screen::after { width: 250px; height: 250px; left: -90px; bottom: -100px; box-shadow: 0 0 0 24px rgba(181,238,224,.025), 0 0 0 52px rgba(181,238,224,.02); }
+        .welcome-container, .welcome-content, .welcome-card { position: relative; z-index: 1; }
+        .welcome-card { background: linear-gradient(150deg, #eaf3f0, #dcebe6); color: #173640; border: 1px solid rgba(195,231,220,.55); }
+        .welcome-card h2 { color: #173f49; }
+        .welcome-card p { color: #607a7e; }
+        .welcome-card .estimate-notice { background: #dcebe6; border-color: #bfd9d1; }
+        .returning-access { text-align: center; }
+        .returning-avatar { width: 66px; height: 66px; margin: 4px auto 14px; border-radius: 22px; display:flex; align-items:center; justify-content:center; background: linear-gradient(140deg,#0c7279,#36b39f); color:#fff; font-size:25px; font-weight:800; box-shadow:0 10px 22px rgba(7,94,104,.2); }
+        .returning-kicker { color:#16877f; font-size:10px; letter-spacing:1.6px; font-weight:900; }
+        .returning-access h3 { font-size:25px; color:#173f49; margin:5px 0 7px; }
+        .returning-access p { margin-bottom:22px; }
+        .text-action { display:block; margin:15px auto 0; border:0; background:transparent; color:#147b78; font-size:13px; font-weight:750; padding:8px; }
+        .text-action:hover { color:#07545d; text-decoration:underline; }
+        .sidebar-return { width:100%; margin-top:12px; border:1px solid #3b666b; background:rgba(7,36,45,.28); color:#d8eeea; border-radius:10px; padding:9px 10px; text-align:left; font-size:12px; font-weight:700; transition:.2s; }
+        .sidebar-return:hover { background:#24616a; color:#fff; transform:translateY(-1px); }
+        .btn-primary { transition:transform .2s, box-shadow .2s, filter .2s; }
+        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 24px rgba(7,94,104,.28); }
+        button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline:3px solid #58bfb0; outline-offset:3px; }
+        @media (max-width: 650px) {
+            .welcome-screen { padding:18px; }
+            .welcome-content { padding:14px 8px; }
+            .welcome-card { padding:25px 22px; }
+            .welcome-content h1 { font-size:clamp(36px, 11vw, 52px); }
+        }
+
     </style>
 </head>
 
@@ -2669,6 +2727,17 @@
                     <strong>Antes de começar</strong>
                     O Água na Conta apresenta estimativas de consumo de água com base nos hábitos e nas informações fornecidas por você. Os resultados não representam uma medição real do consumo.
                 </div>
+            </div>
+
+            <div id="returningAccess" class="returning-access hidden" aria-live="polite">
+                <div class="returning-avatar" id="returningAvatar">💧</div>
+                <span class="returning-kicker">QUE BOM TER VOCÊ DE VOLTA</span>
+                <h3 id="returningGreeting">Olá novamente!</h3>
+                <p>Seu progresso continua salvo neste navegador. Entre para continuar de onde parou.</p>
+                <button type="button" class="btn btn-primary btn-full" onclick="enterSavedPlatform()">
+                    Entrar na minha jornada <span aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="text-action" onclick="showNameForm()">Não sou essa pessoa / trocar nome</button>
             </div>
 
             <form
@@ -2815,6 +2884,9 @@
             <p>
                 ajudam a construir um futuro mais sustentável.
             </p>
+            <button type="button" class="sidebar-return" onclick="returnToWelcome()">
+                <span aria-hidden="true">↩</span> Voltar à tela inicial
+            </button>
 
         </div>
 
@@ -4794,11 +4866,7 @@
         "DOMContentLoaded",
         function() {
 
-            if (state.name) {
-
-                showApplication();
-
-            }
+            showWelcomeScreen();
 
             renderChallenges();
             renderHistory();
@@ -4854,6 +4922,62 @@
     /* =========================================================
        INÍCIO
     ========================================================= */
+
+    function showWelcomeScreen() {
+
+        const welcome = document.getElementById("welcomeScreen");
+        const app = document.getElementById("app");
+        const returning = document.getElementById("returningAccess");
+        const form = document.getElementById("welcomeForm");
+
+        if (app) app.classList.add("hidden");
+        if (welcome) welcome.classList.remove("hidden");
+
+        if (state.name) {
+            returning.classList.remove("hidden");
+            form.classList.add("hidden");
+            document.getElementById("returningGreeting").textContent = `Olá, ${state.name}!`;
+            document.getElementById("returningAvatar").textContent = state.name.charAt(0).toUpperCase();
+        } else {
+            returning.classList.add("hidden");
+            form.classList.remove("hidden");
+        }
+
+    }
+
+
+    function enterSavedPlatform() {
+
+        if (!state.name) {
+            showNameForm();
+            return;
+        }
+
+        showApplication();
+        showToast(`Bem-vindo(a) de volta, ${state.name}! 💧`, "success");
+
+    }
+
+
+    function showNameForm() {
+
+        document.getElementById("returningAccess").classList.add("hidden");
+        document.getElementById("welcomeForm").classList.remove("hidden");
+        const input = document.getElementById("userName");
+        input.value = state.name || "";
+        input.focus();
+
+    }
+
+
+    function returnToWelcome() {
+
+        showWelcomeScreen();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        closeSidebar();
+
+    }
+
 
     function startPlatform() {
 
